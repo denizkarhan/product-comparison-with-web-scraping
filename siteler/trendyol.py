@@ -1,4 +1,4 @@
-from gettext import find
+import find
 from os import link
 import requests
 from bs4 import BeautifulSoup
@@ -6,11 +6,17 @@ import pandas as pd
 import xlwt
 import openpyxl
 from xlwt import Workbook
+import bs4
+import lxml
 
 my_wb = openpyxl.Workbook()
 my_sheet = my_wb.active
 
-col = ["Marka", "Model Adı", "Model No", "İşletim Sistemi", "İşlemci Tipi", "İslemci Nesli", "Ram", "Disk Boyutu", "Disk Türü", "Ekran Boyutu", "Puanı", "Fiyat", "Site İsmi", "Site Linki"]
+col = ["Marka", "Model Adı", "Model No",
+       "İşletim Sistemi", "İşlemci Tipi",
+       "İslemci Nesli", "Ram", "Disk Boyutu",
+       "Disk Türü", "Ekran Boyutu", "Puanı",
+       "Fiyat", "Site İsmi", "Site Linki"]
 Trendyol = "https://www.trendyol.com/laptop-x-c103108?pi={0}"
 OS = " "
 cpuType = " "
@@ -20,6 +26,13 @@ Disk = " "
 DiskType = " "
 screen = " "
 row = 1
+points_index = 0
+full_points = []
+
+def strStr(haystack, needle):
+  if needle in haystack:
+    return haystack.index(needle)
+  return -1
 
 def atoi(str):
     resultant = 0
@@ -36,22 +49,26 @@ for i in range(14):
 def get_soup(Url):
     return BeautifulSoup(requests.get(Url).text, 'html.parser')
 
-for s_s in range(1,20):
-  Link_one = get_soup(Trendyol.format(s_s)).find_all("div", {"class":"p-card-wrppr with-campaign-view"})
-  
-  print(Link_one.find("div", {"class":"ratings"}))
-  exit(0)
-  for z in points:
-    puanlar += int(atoi(str(z)[str(z).find("style") + 13:]))
-  print(puanlar)
-  exit(0)    
-  for i in Link_one:    
+for s_s in range(1,2):
+  Link_one = get_soup(Trendyol.format(s_s)).find("div", {"class":"prdct-cntnr-wrppr"})
+  computers = Link_one.find_all("div", {"class":"p-card-wrppr with-campaign-view"})
+  Links_points = Link_one.find_all("div", {"class":"product-down"})
+  for s in Links_points:
+    rrr = s.find("div", {"class":"ratings"})
+    if (str(rrr) == "None"):
+      full_points.append(0)
+    else:
+      pp = rrr.find_all("div", {"class":"star-w"})
+      points = 0
+      for pp in rrr:
+        points += atoi(str(pp)[str(pp).find("style") + 13:])
+      full_points.append(points)
+  for i in computers:    
     row += 1
     link_site = "https://www.trendyol.com" + i.a['href']
     Page_urun = get_soup("https://www.trendyol.com" + i.a['href'])
-    Marka = i.find("div", {"class":"prdct-desc-cntnr-ttl-w two-line-text"}).span.text
-    
-    
+    Marka = Page_urun.find("div", {"class":"pr-in-cn"}).h1.a.text
+
     Model = []
     Model = Page_urun.find("h1", {"class":"pr-new-br"}).span.text.split(" ")
     Model_adi = Model[1] + " " + Model[2]
@@ -71,7 +88,6 @@ for s_s in range(1,20):
       c.value = "Default"
   
     ozellikler = Page_urun.find("ul", {"class":"detail-attr-container"}).find_all("li")
-    
     flag = 1
     for i in ozellikler:
       str = i.text
@@ -93,28 +109,31 @@ for s_s in range(1,20):
       elif (str.find("Ekran Boyutu") != -1):
         screen = str[13:]
 
-      c = my_sheet.cell(row = row, column = 4)
-      c.value = OS
-      c = my_sheet.cell(row = row, column = 5)
-      c.value = cpuType
-      c = my_sheet.cell(row = row, column = 6)
-      c.value = cpuStatus
-      c = my_sheet.cell(row = row, column = 7)
-      c.value = ram
-      c = my_sheet.cell(row = row, column = 8)
-      c.value = Disk
-      c = my_sheet.cell(row = row, column = 9)
-      c.value = DiskType
-      c = my_sheet.cell(row = row, column = 10)
-      c.value = screen
-      c = my_sheet.cell(row = row, column = 11)
-      c.value = "points"
-      c = my_sheet.cell(row = row, column = 12)
-      c.value = fiyat
-      c = my_sheet.cell(row = row, column = 13)
-      c.value = "Trendyol"
-      c = my_sheet.cell(row = row, column = 14)
-      c.value = link_site
+    c = my_sheet.cell(row = row, column = 4)
+    c.value = OS
+    c = my_sheet.cell(row = row, column = 5)
+    c.value = cpuType
+    c = my_sheet.cell(row = row, column = 6)
+    c.value = cpuStatus
+    c = my_sheet.cell(row = row, column = 7)
+    c.value = ram
+    c = my_sheet.cell(row = row, column = 8)
+    c.value = Disk
+    c = my_sheet.cell(row = row, column = 9)
+    c.value = DiskType
+    c = my_sheet.cell(row = row, column = 10)
+    c.value = screen
+    c = my_sheet.cell(row = row, column = 11)
+    try:
+      c.value = full_points[row - 1]/100
+    except:
+      c.value = 0
+    c = my_sheet.cell(row = row, column = 12)
+    c.value = fiyat
+    c = my_sheet.cell(row = row, column = 13)
+    c.value = "Trendyol"
+    c = my_sheet.cell(row = row, column = 14)
+    c.value = link_site
 
 my_wb.save("Trendyol.xlsx")
 
