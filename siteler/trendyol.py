@@ -28,11 +28,6 @@ screen = " "
 row = 1
 full_points = []
 
-def strStr(haystack, needle):
-  if needle in haystack:
-    return haystack.index(needle)
-  return -1
-
 def atoi(str):
     resultant = 0
     for i in range(len(str)):
@@ -73,21 +68,7 @@ for s_s in range(1,10):
     Model = []
     Model = Page_urun.find("h1", {"class":"pr-new-br"}).span.text.split(" ")
     Model_adi = Model[1] + " " + Model[2]
-
-    fiyat = Page_urun.find("span", {"class":"prc-dsc"}).text
-    
-    c = my_sheet.cell(row = row, column = 1)
-    c.value = Marka
-    
-    c = my_sheet.cell(row = row, column = 2)
-    c.value = Model_adi
-    
-    c = my_sheet.cell(row = row, column = 3)
-    if (Marka != "Monster"):
-      c.value = Model[-2]
-    else:
-      c.value = "Default"
-  
+    fiyat = Page_urun.find("span", {"class":"prc-dsc"}).text 
     ozellikler = Page_urun.find("ul", {"class":"detail-attr-container"}).find_all("li")
     flag = 1
     for i in ozellikler:
@@ -110,6 +91,15 @@ for s_s in range(1,10):
       elif (str.find("Ekran Boyutu") != -1):
         screen = str[13:]
 
+    c = my_sheet.cell(row = row, column = 1)
+    c.value = Marka
+    c = my_sheet.cell(row = row, column = 2)
+    c.value = Model_adi
+    c = my_sheet.cell(row = row, column = 3)
+    if (Marka != "Monster"):
+      c.value = Model[-2]
+    else:
+      c.value = "Default"
     c = my_sheet.cell(row = row, column = 4)
     c.value = OS
     c = my_sheet.cell(row = row, column = 5)
