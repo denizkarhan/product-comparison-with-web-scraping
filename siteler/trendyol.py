@@ -26,7 +26,6 @@ Disk = " "
 DiskType = " "
 screen = " "
 row = 1
-points_index = 0
 full_points = []
 
 def strStr(haystack, needle):
@@ -49,30 +48,32 @@ for i in range(14):
 def get_soup(Url):
     return BeautifulSoup(requests.get(Url).text, 'html.parser')
 
-for s_s in range(1,2):
+for s_s in range(1,10):
   Link_one = get_soup(Trendyol.format(s_s)).find("div", {"class":"prdct-cntnr-wrppr"})
   computers = Link_one.find_all("div", {"class":"p-card-wrppr with-campaign-view"})
   Links_points = Link_one.find_all("div", {"class":"product-down"})
   for s in Links_points:
-    rrr = s.find("div", {"class":"ratings"})
-    if (str(rrr) == "None"):
-      full_points.append(0)
-    else:
+    try:
+      rrr = s.find("div", {"class":"ratings"})
       pp = rrr.find_all("div", {"class":"star-w"})
       points = 0
       for pp in rrr:
         points += atoi(str(pp)[str(pp).find("style") + 13:])
       full_points.append(points)
-  for i in computers:    
+    except:
+      full_points.append(0)
+  for i in computers:
     row += 1
     link_site = "https://www.trendyol.com" + i.a['href']
     Page_urun = get_soup("https://www.trendyol.com" + i.a['href'])
-    Marka = Page_urun.find("div", {"class":"pr-in-cn"}).h1.a.text
-
+    try:
+      Marka = Page_urun.find("div", {"class":"pr-in-cn"}).h1.a.text
+    except:
+      Marka = Page_urun.find("div", {"class":"pr-in-cn"}).h1.text.split(" ")[0]
     Model = []
     Model = Page_urun.find("h1", {"class":"pr-new-br"}).span.text.split(" ")
     Model_adi = Model[1] + " " + Model[2]
-    
+
     fiyat = Page_urun.find("span", {"class":"prc-dsc"}).text
     
     c = my_sheet.cell(row = row, column = 1)
@@ -124,10 +125,7 @@ for s_s in range(1,2):
     c = my_sheet.cell(row = row, column = 10)
     c.value = screen
     c = my_sheet.cell(row = row, column = 11)
-    try:
-      c.value = full_points[row - 1]/100
-    except:
-      c.value = 0
+    c.value = full_points[row%23] / 100
     c = my_sheet.cell(row = row, column = 12)
     c.value = fiyat
     c = my_sheet.cell(row = row, column = 13)
@@ -136,33 +134,3 @@ for s_s in range(1,2):
     c.value = link_site
 
 my_wb.save("Trendyol.xlsx")
-
-# puan = soup.find_all("div", {"class":"full"}, {"style":"width"})
-# for z in puan:
-#   sayilar.append(int(str(z)[strStr(str(z),"width:") + 6:strStr(str(z),"%")]))
-# total = sayilar[kol] + sayilar[kol + 1] + sayilar[kol + 2] + sayilar[kol + 3] + sayilar[kol + 4]
-# kol += 5
-# total /= 100
-
-""" from database import get_database
-
-dbname = get_database()
-collection_name = dbname["user_1_items"]
-item_1 = {
-  "_id" : "U1IT00001",
-  "item_name" : "Blender",
-  "max_discount" : "10%",
-  "batch_number" : "RR450020FRG",
-  "price" : 340,
-  "category" : "kitchen appliance"
-}
-
-item_2 = {
-  "_id" : "U1IT00002",
-  "item_name" : "Egg",
-  "category" : "food",
-  "quantity" : 12,
-  "price" : 36,
-  "item_description" : "brown country eggs"
-}
-collection_name.insert_many([item_1,item_2]) """
