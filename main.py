@@ -16,7 +16,6 @@ teknosa = "https://www.teknosa.com/laptop-notebook-c-116004?s=%3Arelevance&page=
 tekno = "https://www.teknosa.com"
 n11 = "https://www.n11.com/bilgisayar/dizustu-bilgisayar?ipg={0}"
 
-pointss = ["0,0", "3,2", "3,5", "3,7", "3,9", "4,0", "4,1", "4,4", "4,5", "4,7", "5,0"]
 Ozellik_adi2 = []
 Ozellik_aciklamasi2 = []
 Link_two = []
@@ -76,7 +75,7 @@ def _teknosa():
         fiyat = computer.find("div", {"class":"prd-prc2"}).text.strip(" \n")
       except:
         fiyat = "Fiyat Bilgisi Yok"
-      puan = pointss[random.randint(0, 10)]
+      puan = '0'
 
       Page_urun = computer.find("div", {"class":"pdp-acc-body"}).find("div", {"class":"ptf-body"})
       Ozellikler1 = Page_urun.find_all("table")
