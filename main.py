@@ -7,7 +7,7 @@ from xlwt import Workbook
 
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = myclient["admin"]
-mycol = mydb["Deneme2"]
+mycol = mydb["Deneme4"]
 
 Trendyol = "https://www.trendyol.com/laptop-x-c103108?pi={0}"
 vatan = "https://www.vatanbilgisayar.com/notebook/?page={0}"
@@ -29,6 +29,7 @@ ram = "null"
 Disk = "null"
 DiskType = "null"
 screen = "null"
+success_data = 0
 row = 1
 
 Uniq_Computer_of_n11 = []
@@ -99,19 +100,15 @@ def _teknosa():
           elif (Ozellik_adi2[k].find("Ekran Boyutu") != -1):
             screen = Ozellik_aciklamasi2[k].strip(" \n")
       
-      mydict = { "Marka": Marka, "Model Adı": Model_adi, "Model No": Model_no,
-                    "İşletim Sistemi": OS, "İşlemci Tipi": cpuType, "İslemci Nesli": cpuStatus,
-                    "Ram": ram, "Disk Boyutu": Disk, "Disk Türü": DiskType,
-                    "Ekran Boyutu": screen,
-                    "Puanı": puan, "Fiyat": fiyat,
-                    "Site İsmi": "teknosa", "Site Linki": link_site }
+      mydict = { "Marka": Marka, "Model Adı": Model_adi, "Model No": Model_no, "İşletim Sistemi": OS, "İşlemci Tipi": cpuType, "İslemci Nesli": cpuStatus, "Ram": ram,
+                "Disk Boyutu": Disk, "Disk Türü": DiskType, "Ekran Boyutu": screen, "Puanı": puan, "Fiyat": fiyat, "Site İsmi": "teknosa", "Site Linki": link_site }
       
-      Uniq_Computer_Converter(Uniq_Computer_of_teknosa, mydict)
+      Uniq_Computer_of_teknosa.append(mydict)
     
-    print(s_s + ". Sayfa verileri alındı ✏️")
+    print("Sayfa verileri alındı ✏️")
 
 def _vatan():
-    for s_s in range(1, 20): 
+    for s_s in range(1, 15): 
       page = get_soup(vatan.format(s_s)).find_all("div", {"class":"product-list product-list--list-page"})
       for i in page:
           link_site = V + i.a['href']
@@ -160,19 +157,14 @@ def _vatan():
               elif (key[i].find("Üretici Part Numarası") != -1):
                   Model_no = value[i].strip(" \n").upper()
                   
-          mydict = { "Marka": Marka, "Model Adı": Model_adi, "Model No": Model_no,
-                    "İşletim Sistemi": OS, "İşlemci Tipi": cpuType, "İslemci Nesli": cpuStatus,
-                    "Ram": ram, "Disk Boyutu": Disk, "Disk Türü": DiskType,
-                    "Ekran Boyutu": screen,
-                    "Puanı": puan, "Fiyat": fiyat,
-                    "Site İsmi": "vatan", "Site Linki": link_site }
+          mydict = { "Marka": Marka, "Model Adı": Model_adi, "Model No": Model_no, "İşletim Sistemi": OS, "İşlemci Tipi": cpuType, "İslemci Nesli": cpuStatus,
+                    "Ram": ram, "Disk Boyutu": Disk, "Disk Türü": DiskType, "Ekran Boyutu": screen, "Puanı": puan, "Fiyat": fiyat, "Site İsmi": "vatan", "Site Linki": link_site }
           
-          Uniq_Computer_Converter(Uniq_Computer_of_vatan, mydict)
-      print(s_s + ". Sayfa verileri alındı ✏️")
-        
+          Uniq_Computer_of_vatan.append(mydict)
+      print("Sayfa verileri alındı ✏️")
 
 def _n11():
-  for s_s in range(1,10):
+  for s_s in range(1,15):
     Link_one = get_soup(n11.format(s_s)).find_all("div", {"class":"pro"})
     for i in Link_one:
       link_site = i.a['href']
@@ -204,19 +196,16 @@ def _n11():
             DiskType = str[11:].strip(" \n")
           elif (str.find("Ekran Boyutu") != -1):
             screen = str[14:].strip(" \n")
-      
-      mydict = { "Marka": Marka, "Model Adı": Model_adi, "Model No": Model_no,
-                    "İşletim Sistemi": OS, "İşlemci Tipi": cpuType, "İslemci Nesli": cpuStatus,
-                    "Ram": ram, "Disk Boyutu": Disk, "Disk Türü": DiskType,
-                    "Ekran Boyutu": screen,
-                    "Puanı": puan, "Fiyat": fiyat,
-                    "Site İsmi": "n11", "Site Linki": link_site }
-      Uniq_Computer_Converter(Uniq_Computer_of_n11, mydict)
-    print(s_s + ". Sayfa verileri alındı ✏️")
+            
+      mydict = { "Marka": Marka, "Model Adı": Model_adi, "Model No": Model_no, "İşletim Sistemi": OS, "İşlemci Tipi": cpuType, "İslemci Nesli": cpuStatus,
+                    "Ram": ram, "Disk Boyutu": Disk, "Disk Türü": DiskType, "Ekran Boyutu": screen, "Puanı": puan, "Fiyat": fiyat, "Site İsmi": "n11", "Site Linki": link_site }  
+      Uniq_Computer_of_n11.append(mydict)
+    print("Sayfa verileri alındı ✏️")
+
 
 def _trendyol():
   row = 1
-  for s_s in range(1,15):
+  for s_s in range(1,20):
     Link_one = get_soup(Trendyol.format(s_s))
     computers = Link_one.find_all("div", {"class":"p-card-wrppr with-campaign-view"})
     Links_points = Link_one.find_all("div", {"class":"product-down"})
@@ -267,15 +256,12 @@ def _trendyol():
 
       Model_no = " ".join(Model).strip(" \n").upper()
 
-      mydict = { "Marka": Marka, "Model Adı": Model_adi, "Model No": Model_no,
-                "İşletim Sistemi": OS, "İşlemci Tipi": cpuType, "İslemci Nesli": cpuStatus,
-                "Ram": ram, "Disk Boyutu": Disk, "Disk Türü": DiskType,
-                "Ekran Boyutu": screen,
-                "Puanı": full_points[row%23] / 100, "Fiyat": fiyat,
-                "Site İsmi": "Trendyol", "Site Linki": link_site }
+      mydict = { "Marka": Marka, "Model Adı": Model_adi, "Model No": Model_no, "İşletim Sistemi": OS, "İşlemci Tipi": cpuType, "İslemci Nesli": cpuStatus,
+                "Ram": ram, "Disk Boyutu": Disk, "Disk Türü": DiskType, "Ekran Boyutu": screen, "Puanı": full_points[row%23] / 100, "Fiyat": fiyat, "Site İsmi": "Trendyol", "Site Linki": link_site }
       
-      Uniq_Computer_Converter(Uniq_Computer_of_trendyol, mydict)
-    print(s_s + ". Sayfa verileri alındı ✏️")
+      Uniq_Computer_of_trendyol.append(mydict)
+    print("Sayfa verileri alındı ✏️")
+
 
 def _evkur():
     index_data = 0
@@ -323,83 +309,104 @@ def _evkur():
           elif (key.find("Ekran Boyutu") != -1):
                 screen = value.strip(" \n\r")
           
-        mydict = { "Marka": Marka, "Model Adı": Model_adi, "Model No": Model_no,
-            "İşletim Sistemi": OS, "İşlemci Tipi": cpuType, "İslemci Nesli": cpuStatus,
-            "Ram": ram, "Disk Boyutu": Disk, "Disk Türü": DiskType,
-            "Ekran Boyutu": screen,
-            "Puanı": puan, "Fiyat": fiyat,
-            "Site İsmi": "evkur", "Site Linki": link_site }
+        mydict = { "Marka": Marka, "Model Adı": Model_adi, "Model No": Model_no, "İşletim Sistemi": OS, "İşlemci Tipi": cpuType, "İslemci Nesli": cpuStatus,
+            "Ram": ram, "Disk Boyutu": Disk, "Disk Türü": DiskType, "Ekran Boyutu": screen, "Puanı": puan, "Fiyat": fiyat, "Site İsmi": "evkur", "Site Linki": link_site }
         
-        Uniq_Computer_Converter(Uniq_Computer_of_evkur, mydict)
-      print(s_s + ". Sayfa verileri alındı ✏️")
+        Uniq_Computer_of_evkur.append(mydict)
+      print("Sayfa verileri alındı ✏️")
 
 def Trendyol_Model_No_Find():
-      index = 0
-      for i in Uniq_Computer_of_trendyol:
-            Model_no_trendyol = i.get("Model No")
-            ctrl = 1
-            if (ctrl == 1):
-                  for j in Uniq_Computer_of_evkur:
-                    if (Model_no_trendyol.find(j.get("Model No")) != -1):
-                          if (i.get("ram") == j.get("ram") and i.get("Ekran Boyutu") == j.get("Ekran Boyutu")):
-                            print("Trendyol Model Numarası değiştirildi ✨")
-                            Uniq_Computer_of_trendyol[index].update({"Model No": j.get("Model No")})
-                            ctrl = 0
-            if (ctrl == 1):
-              for j in Uniq_Computer_of_vatan:
-                    if (Model_no_trendyol.find(j.get("Model No")) != -1):
-                          if (i.get("ram") == j.get("ram") and i.get("Ekran Boyutu") == j.get("Ekran Boyutu")):
-                            print("Trendyol Model Numarası değiştirildi ✨")
-                            Uniq_Computer_of_trendyol[index].update({"Model No": j.get("Model No")})
-                            ctrl = 0
-            if (ctrl == 1):
-              for j in Uniq_Computer_of_teknosa:
-                    if (Model_no_trendyol.find(j.get("Model No")) != -1):
-                          if (i.get("ram") == j.get("ram") and i.get("Ekran Boyutu") == j.get("Ekran Boyutu")):
-                            print("Trendyol Model Numarası değiştirildi ✨")
-                            Uniq_Computer_of_trendyol[index].update({"Model No": j.get("Model No")})
-                            ctrl = 0
-            index += 1
+    index = 0
+    for i in Uniq_Computer_of_trendyol:
+        Model_no_trendyol = i.get("Model No")
+        ctrl = 1
+        if (ctrl == 1):
+            for j in Uniq_Computer_of_evkur:
+                if (Model_no_trendyol.find(j.get("Model No")) != -1):
+                    Uniq_Computer_of_trendyol[index].update({"Model No": j.get("Model No")})
+                    print("Trendyol Model Numarası evkur ile değiştirildi ✨")
+                    ctrl = 0
+        if (ctrl == 1):
+            for j in Uniq_Computer_of_vatan:
+                if (Model_no_trendyol.find(j.get("Model No")) != -1):
+                    Uniq_Computer_of_trendyol[index].update({"Model No": j.get("Model No")})
+                    print("Trendyol Model Numarası vatan ile değiştirildi ✨")
+                    ctrl = 0
+        if (ctrl == 1):
+            for j in Uniq_Computer_of_teknosa:
+                if (Model_no_trendyol.find(j.get("Model No")) != -1):
+                    Uniq_Computer_of_trendyol[index].update({"Model No": j.get("Model No")})
+                    print("Trendyol Model Numarası teknosa ile değiştirildi ✨")
+                    ctrl = 0
+        if (ctrl == 1):
+            for j in Uniq_Computer_of_n11:
+                if (Model_no_trendyol.find(j.get("Model No")) != -1):
+                    Uniq_Computer_of_trendyol[index].update({"Model No": j.get("Model No")})
+                    print("Trendyol Model Numarası n11 ile değiştirildi ✨")
+                    ctrl = 0
+        index += 1
 
-def Uniq_Computer_Converter(Uniq_Computers, dict):
-      idx = 0
-      for i in Uniq_Computers:
-        Model_Nolar = i.get("Model No")
-        if (Model_Nolar == dict.get("Model No") and my_atoi(i.get("Fiyat")) > my_atoi(dict.get("Fiyat"))):
-              Uniq_Computers[idx] = dict
-              return (0)
-        elif (Model_Nolar == dict.get("Model No")):
-              return (0)
-        idx += 1
-      Uniq_Computers.append(dict)
+def data_in_list(liste, data):
+    for i in liste:
+        if (i.get("Model No") == data.get("Model No")):
+            print("Duplicate ürün silindi!")
+            return (1)
+    return (0)
+
+def Uniq_computer_Converter(Computer_data):
+    New_uniq_computer_data = []
+    index = 0
+    flag = 1
+    print("Duplicate kontrolü yapılıyor...")
+    for i in Computer_data:
+        flag = 1
+        for j in Computer_data[index:]:
+            if (flag == 1 and i.get("Model No") == j.get("Model No")):
+                if (data_in_list(New_uniq_computer_data, i) == 0):
+                    New_uniq_computer_data.append(j)
+                    flag = 0
+        index += 1
+    print("Duplicate kontrolü bitti.")
+    return New_uniq_computer_data
 
 def Global_data_create():
       for i in Uniq_Computer_of_evkur:
-            Global_Computer_Data.append(i)
+          Global_Computer_Data.append(i)
       for i in Uniq_Computer_of_n11:
-            Global_Computer_Data.append(i)
+          Global_Computer_Data.append(i)
       for i in Uniq_Computer_of_vatan:
-            Global_Computer_Data.append(i)
+          Global_Computer_Data.append(i)
       for i in Uniq_Computer_of_teknosa:
-            Global_Computer_Data.append(i)
+          Global_Computer_Data.append(i)
       for i in Uniq_Computer_of_trendyol:
-            Global_Computer_Data.append(i)
+          Global_Computer_Data.append(i)
 
 def Global_data_to_MongoDB():
-  for i in Global_Computer_Data:
-    x = mycol.insert_one(i)
+    for i in Global_Computer_Data:
+        x = mycol.insert_one(i)
 
-print("📌 Teknosa verileri alınıyor...")
-_teknosa()
-print("Teknosa verileri alındı ☑️")
+def view_success_data():
+  for i in Global_Computer_Data:
+      Model_no_i = i.get("Model No")
+      for j in Global_Computer_Data:
+          if (Model_no_i == j.get("Model No")):
+              print("Eşleşen sonuç var 🔥")
+              success_data += 1
 
 print("📌 Evkur verileri alınıyor...")
 _evkur()
 print("Evkur verileri alındı ☑️")
+# Uniq_Computer_of_evkur = Uniq_computer_Converter(Uniq_Computer_of_evkur)
 
 print("📌 N11 verileri alınıyor...")
 _n11()
 print("N11 verileri alındı ☑️")
+# Uniq_Computer_of_n11 = Uniq_computer_Converter(Uniq_Computer_of_n11)
+
+print("📌 Teknosa verileri alınıyor...")
+_teknosa()
+print("Teknosa verileri alındı ☑️")
+# Uniq_Computer_of_teknosa = Uniq_computer_Converter(Uniq_Computer_of_teknosa)
 
 print("📌 Trendyol verileri alınıyor...")
 _trendyol()
@@ -408,9 +415,12 @@ print("Trendyol verileri alındı ☑️")
 print("📌 Vatan Bilgisayar verileri alınıyor...")
 _vatan()
 print("Vatan Bilgisayar verileri alındı ☑️")
+# Uniq_Computer_of_vatan = Uniq_computer_Converter(Uniq_Computer_of_vatan)
+
 
 print("Trendyol verileri için Model Numarası aranıyor 🔍")
 Trendyol_Model_No_Find()
+Uniq_Computer_of_trendyol = Uniq_computer_Converter(Uniq_Computer_of_trendyol)
 
 print("Veriseti oluşturuluyor 🔧")
 Global_data_create()
@@ -419,3 +429,22 @@ print("Veriler MongoDB'ye aktarılıyor 📝")
 Global_data_to_MongoDB()
 
 print("Veriler başarılı bir şekilde veritabanına aktarıldı ✅")
+
+view_success_data()
+print("- Eşleşen veri miktarı -")
+print(success_data)
+
+
+''' def Uniq_Computer_Converter(Uniq_Computers, dict):
+      idx = 0
+      for i in Uniq_Computers:
+        Model_Nolar = i.get("Model No")
+        if (Model_Nolar == dict.get("Model No") and my_atoi(i.get("Fiyat")) > my_atoi(dict.get("Fiyat"))):
+              print("Duplicate önlendi ve veriler değiştirildi.")
+              print("Eski: " + Model_Nolar + " | Yeni: " + dict.get("Model No"))
+              print(str(my_atoi(i.get("Fiyat"))) + " " + str(my_atoi(dict.get("Fiyat"))))
+              Uniq_Computers.pop(idx)
+              Uniq_Computers.insert(idx, dict)
+              return (0)
+        idx += 1
+      Uniq_Computers.append(dict) '''
