@@ -1,6 +1,6 @@
 /******* Bootstrap Theming ********/
 
-$primary: #D19C97;
+$primary: #9d281d;
 $secondary: #EDF1FF;
 $light: #FFFFFF;
 $dark: #1C1C1C;
@@ -150,6 +150,17 @@ $input-placeholder-color: #999999;
     margin: 0;
     padding: 0;
     list-style-type: none;
+}
+
+.urunbilgisi{
+    width: 960px;
+    margin: 0 auto;
+    background-color: white;
+}
+.karsilastirma{
+    background-color: #89196B;
+    color: white;
+    padding: 20px;
 }
 
 .back-to-top {
