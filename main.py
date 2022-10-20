@@ -1,4 +1,4 @@
-import find, bs4, lxml, pymongo, requests
+import find, bs4, lxml, pymongo, requests, urllib.request, shutil
 from os import link
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -8,7 +8,7 @@ import threading
 
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = myclient["admin"]
-mycol = mydb["Deneme11"]
+mycol = mydb["Deneme12"]
 
 Trendyol = "https://www.trendyol.com/laptop-x-c103108?pi={0}"
 T = "https://www.trendyol.com"
@@ -47,6 +47,8 @@ Uniq_Computer_of_trendyol = []
 Uniq_Computer_of_ciceksepeti = []
 
 Global_Computer_Data = []
+End_computer_data = []
+image_computer_links = []
 
 def get_soup(Url):
     return BeautifulSoup(requests.get(Url).text, 'html.parser')
@@ -62,7 +64,7 @@ def my_atoi(str):
 
 def _teknosa():
   computer_count = 0
-  for s_s in range(1,20):
+  for s_s in range(1, 3):
     Link_one = get_soup(teknosa.format(s_s))
     x = Link_one.find_all("div",{"id":"product-item"})
     for s in x:
@@ -122,7 +124,7 @@ def _teknosa():
 
 def _vatan():
     computer_count = 0
-    for s_s in range(1, 35): 
+    for s_s in range(1, 3): 
       page = get_soup(vatan.format(s_s)).find_all("div", {"class":"product-list product-list--list-page"})
       for i in page:
           link_site = V + i.a['href']
@@ -184,7 +186,7 @@ def _vatan():
 
 def _n11():
   computer_count = 0
-  for s_s in range(1,35):
+  for s_s in range(1, 3):
     Link_one = get_soup(n11.format(s_s)).find_all("div", {"class":"pro"})
     for i in Link_one:
       link_site = i.a['href']
@@ -232,7 +234,7 @@ def _n11():
 def _trendyol():
   computer_count = 0
   row = 1
-  for s_s in range(1,35):
+  for s_s in range(1, 3):
     Link_one = get_soup(Trendyol.format(s_s))
     computers = Link_one.find_all("div", {"class":"p-card-wrppr with-campaign-view"})
     Links_points = Link_one.find_all("div", {"class":"product-down"})
@@ -358,7 +360,7 @@ def _evkur():
 
 def _turkcell():
     computer_count = 0
-    for s_s in range(1, 2):
+    for s_s in range(1, 3):
         page = get_soup(Turkcell.format(s_s))
         links = page.find("div", {"class":"m-grid"}).find_all("div", {"class":"m-grid-col-4 product"})
         for i in links:
@@ -409,7 +411,7 @@ def _ciceksepeti():
     Disk = "null"
     DiskType = "null"
     screen = "null"
-    for s_s in range(1, 35):
+    for s_s in range(1, 3):
         page = get_soup(ciceksepeti.format(s_s)).find("div", {"class":"products products--category js-ajax-category-products"})
         pages = page.find_all("div",{"class":"products__item js-category-item-hover js-product-item-for-countdown js-product-item"})
         for x in pages[:30]:
@@ -445,7 +447,7 @@ def _ciceksepeti():
             mydict = { "Marka": Marka, "Model Adı": "Belirtilmemiş", "Model No": Model_no, "İşletim Sistemi": OS, "İşlemci Tipi": cpuType, "İslemci Nesli": cpuStatus,
             "Ram": ram, "Disk Boyutu": Disk, "Disk Türü": "SSD", "Ekran Boyutu": screen, "Puanı": "0.0", "Fiyat": fiyat, "Site İsmi": "ciceksepeti", "Site Linki": link_site }
 
-            Uniq_Computer_of_teknosa.append(mydict)
+            Uniq_Computer_of_ciceksepeti.append(mydict)
             computer_count += 1
             print(str(computer_count) + ". Ciceksepeti")
         print("Sayfa verileri alındı ✏️")
@@ -588,8 +590,7 @@ def Global_data_create():
       for i in Uniq_Computer_of_trendyol:
           Global_Computer_Data.append(i)
       for i in Uniq_Computer_of_turkcell:
-          Global_Computer_Data.append(i)
-          
+          Global_Computer_Data.append(i)       
 
 def Global_success_data_to_MongoDB():
   mongo_id = 0
@@ -602,6 +603,7 @@ def Global_success_data_to_MongoDB():
           mongo_id += 1
           i.update({"id": mongo_id})
           x = mycol.insert_one(i)
+          End_computer_data.append(i)
           print(k * "🔥")
 
 def Trendyol_failure_model_no():
@@ -622,18 +624,48 @@ def Ciceksepeti_failure_model_no():
                   Uniq_Computer_of_ciceksepeti.remove(i)
       return Uniq_Computer_of_ciceksepeti
 
+def Upload_images():
+    for i in End_computer_data:
+        link = "NULL"
+        try:
+            if (i.get("Site İsmi") == "evkur"):        
+                link = get_soup(i.get("Site Linki")).find("div", {"class":"image"}).img['src']
+            elif (i.get("Site İsmi") == "n11"):
+                link = get_soup(i.get("Site Linki")).find("div", {"class":"imgObj"}).a['href']
+            elif (i.get("Site İsmi") == "vatan"):
+                link = get_soup(i.get("Site Linki")).find("div", {"class":"swiper-slide"}).a['href']
+            elif (i.get("Site İsmi") == "teknosa"):
+                link = get_soup(i.get("Site Linki")).find("div", {"class":"swiper-slide swiper-slide-active"}).a['href']
+            elif (i.get("Site İsmi") == "Trendyol"):
+                link = get_soup(i.get("Site Linki")).find("div", {"class":"flex-container"}).img['src']
+        except:
+            link = "NULL"
+        i.update({"image_link": link})
+        image_computer_links.append(i)
+
+def Download_images():
+      for i in image_computer_links:
+            url = i.get("image_link")
+            try:
+              urllib.request.urlretrieve(url, str(i.get("id")) + ".jpg")
+              shutil.move(str(i.get("id")) + ".jpg", "resimler")
+            except:
+              print("Resim indirilemedi")
+
 t1 = threading.Thread(target = _ciceksepeti)
 t2 = threading.Thread(target = _evkur)
 t3 = threading.Thread(target = _trendyol)
 t4 = threading.Thread(target = _teknosa)
 t5 = threading.Thread(target = _vatan)
 t6 = threading.Thread(target = _n11)
+
 t1.start()
 t2.start()
 t3.start()
 t4.start()
 t5.start()
 t6.start()
+
 t1.join()
 t2.join()
 t3.join()
@@ -668,6 +700,12 @@ print("Veriler MongoDB'ye aktarılıyor 📝")
 Global_success_data_to_MongoDB()
 
 print("Veriler başarılı bir şekilde veritabanına aktarıldı ✅✅✅")
+
+print("Resimler indiriliyor 🔧🔧🔧")
+Upload_images()
+Download_images()
+
+print(image_computer_links)
 
 # print("📌 Turkcell verileri alınıyor...")
 # _turkcell()
