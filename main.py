@@ -8,7 +8,7 @@ import threading
 
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = myclient["admin"]
-mycol = mydb["Deneme10"]
+mycol = mydb["Deneme11"]
 
 Trendyol = "https://www.trendyol.com/laptop-x-c103108?pi={0}"
 T = "https://www.trendyol.com"
@@ -62,7 +62,7 @@ def my_atoi(str):
 
 def _teknosa():
   computer_count = 0
-  for s_s in range(1,15):
+  for s_s in range(1,20):
     Link_one = get_soup(teknosa.format(s_s))
     x = Link_one.find_all("div",{"id":"product-item"})
     for s in x:
@@ -122,7 +122,7 @@ def _teknosa():
 
 def _vatan():
     computer_count = 0
-    for s_s in range(1, 30): 
+    for s_s in range(1, 35): 
       page = get_soup(vatan.format(s_s)).find_all("div", {"class":"product-list product-list--list-page"})
       for i in page:
           link_site = V + i.a['href']
@@ -184,11 +184,11 @@ def _vatan():
 
 def _n11():
   computer_count = 0
-  for s_s in range(1,25):
+  for s_s in range(1,35):
     Link_one = get_soup(n11.format(s_s)).find_all("div", {"class":"pro"})
     for i in Link_one:
       link_site = i.a['href']
-      Page_urun = get_soup(i.a['href'])
+      Page_urun = get_soup(link_site)
       ozellikler = Page_urun.find_all("li", {"class":"unf-prop-list-item"})
       try:
         fiyat = Page_urun.find("div", {"class":"unf-p-summary-price"}).text.strip(" \n")
@@ -232,7 +232,7 @@ def _n11():
 def _trendyol():
   computer_count = 0
   row = 1
-  for s_s in range(1,30):
+  for s_s in range(1,35):
     Link_one = get_soup(Trendyol.format(s_s))
     computers = Link_one.find_all("div", {"class":"p-card-wrppr with-campaign-view"})
     Links_points = Link_one.find_all("div", {"class":"product-down"})
@@ -258,7 +258,10 @@ def _trendyol():
       Model = Page_urun.find("h1", {"class":"pr-new-br"}).span.text.strip(" \n").split(" ")
       Model_adi = (Model[1] + " " + Model[2]).strip(" \n")
       fiyat = Page_urun.find("span", {"class":"prc-dsc"}).text.strip(" \n")
-      ozellikler = Page_urun.find("ul", {"class":"detail-attr-container"}).find_all("li")
+      try:
+          ozellikler = Page_urun.find("ul", {"class":"detail-attr-container"}).find_all("li")
+      except:
+          ozellikler = ["NULL", "NULL","NULL","NULL"]
       flag = 1
 
       for i in ozellikler:
@@ -284,7 +287,7 @@ def _trendyol():
       Model_no = " ".join(Model).strip(" \n").upper()
 
       mydict = { "Marka": Marka, "Model Adı": Model_adi, "Model No": Model_no, "İşletim Sistemi": OS, "İşlemci Tipi": cpuType, "İslemci Nesli": cpuStatus,
-                "Ram": ram, "Disk Boyutu": Disk, "Disk Türü": DiskType, "Ekran Boyutu": screen, "Puanı": full_points[row%23] / 100, "Fiyat": fiyat, "Site İsmi": "Trendyol", "Site Linki": link_site }
+                "Ram": ram, "Disk Boyutu": Disk, "Disk Türü": DiskType, "Ekran Boyutu": screen, "Puanı": str(full_points[row%23] / 100), "Fiyat": fiyat, "Site İsmi": "Trendyol", "Site Linki": link_site }
       
       Uniq_Computer_of_trendyol.append(mydict)
       computer_count += 1
@@ -355,7 +358,7 @@ def _evkur():
 
 def _turkcell():
     computer_count = 0
-    for s_s in range(1, 20):
+    for s_s in range(1, 2):
         page = get_soup(Turkcell.format(s_s))
         links = page.find("div", {"class":"m-grid"}).find_all("div", {"class":"m-grid-col-4 product"})
         for i in links:
@@ -406,7 +409,7 @@ def _ciceksepeti():
     Disk = "null"
     DiskType = "null"
     screen = "null"
-    for s_s in range(1, 20):
+    for s_s in range(1, 35):
         page = get_soup(ciceksepeti.format(s_s)).find("div", {"class":"products products--category js-ajax-category-products"})
         pages = page.find_all("div",{"class":"products__item js-category-item-hover js-product-item-for-countdown js-product-item"})
         for x in pages[:30]:
@@ -586,14 +589,18 @@ def Global_data_create():
           Global_Computer_Data.append(i)
       for i in Uniq_Computer_of_turkcell:
           Global_Computer_Data.append(i)
+          
 
 def Global_success_data_to_MongoDB():
+  mongo_id = 0
   for i in Global_Computer_Data:
       k = 0
       for j in Global_Computer_Data:
-          if (i.get("Model No") == j.get("Model No")):
+          if (i.get("Model No") == j.get("Model No") and len(i.get("Model No")) > 2 ):
               k += 1
       if (k >= 2):
+          mongo_id += 1
+          i.update({"id": mongo_id})
           x = mycol.insert_one(i)
           print(k * "🔥")
 
@@ -615,55 +622,44 @@ def Ciceksepeti_failure_model_no():
                   Uniq_Computer_of_ciceksepeti.remove(i)
       return Uniq_Computer_of_ciceksepeti
 
-print("📌 Turkcell verileri alınıyor...")
-_turkcell()
-print("Turkcell verileri alındı ✅")
-
-print("📌 Evkur verileri alınıyor...")
-_evkur()
-print("Evkur verileri alındı ✅")
-Uniq_Computer_of_evkur = Uniq_computer_Converter(Uniq_Computer_of_evkur)
-
-print("📌 N11 verileri alınıyor...")
-_n11()
-print("N11 verileri alındı ✅")
-Uniq_Computer_of_n11 = Uniq_computer_Converter(Uniq_Computer_of_n11)
-
-print("📌 Teknosa verileri alınıyor...")
-_teknosa()
-print("Teknosa verileri alındı ✅")
-
-print(len(Uniq_Computer_of_teknosa))
-
-Uniq_Computer_of_teknosa = Uniq_computer_Converter(Uniq_Computer_of_teknosa)
-
-print("📌 Vatan Bilgisayar verileri alınıyor...")
-_vatan()
-print("Vatan Bilgisayar verileri alındı ✅")
-Uniq_Computer_of_vatan = Uniq_computer_Converter(Uniq_Computer_of_vatan)
-
-print("📌 Ciceksepeti verileri alınıyor...")
-_ciceksepeti()
-print("Ciceksepeti verileri alındı ✅")
-
-print("📌 Trendyol verileri alınıyor...")
-_trendyol()
-print("Trendyol verileri alındı ✅")
+t1 = threading.Thread(target = _ciceksepeti)
+t2 = threading.Thread(target = _evkur)
+t3 = threading.Thread(target = _trendyol)
+t4 = threading.Thread(target = _teknosa)
+t5 = threading.Thread(target = _vatan)
+t6 = threading.Thread(target = _n11)
+t1.start()
+t2.start()
+t3.start()
+t4.start()
+t5.start()
+t6.start()
+t1.join()
+t2.join()
+t3.join()
+t4.join()
+t5.join()
+t6.join()
 
 print("Turkcell verileri için Model Numarası aranıyor 🔍")
 Turkcell_Model_No_Find()
 Uniq_Computer_of_turkcell = Turkcell_failure_model_no()
-Uniq_Computer_of_turkcell = Uniq_computer_Converter(Uniq_Computer_of_turkcell)
 
 print("Ciceksepeti verileri için Model Numarası aranıyor 🔍")
 Ciceksepeti_Model_No_Find()
 Uniq_Computer_of_ciceksepeti = Ciceksepeti_failure_model_no()
-Uniq_Computer_of_ciceksepeti = Uniq_computer_Converter(Uniq_Computer_of_ciceksepeti)
 
 print("Trendyol verileri için Model Numarası aranıyor 🔍")
 Trendyol_Model_No_Find()
 Uniq_Computer_of_trendyol = Trendyol_failure_model_no()
+
+Uniq_Computer_of_turkcell = Uniq_computer_Converter(Uniq_Computer_of_turkcell)
+Uniq_Computer_of_ciceksepeti = Uniq_computer_Converter(Uniq_Computer_of_ciceksepeti)
 Uniq_Computer_of_trendyol = Uniq_computer_Converter(Uniq_Computer_of_trendyol)
+Uniq_Computer_of_teknosa = Uniq_computer_Converter(Uniq_Computer_of_teknosa)
+Uniq_Computer_of_evkur = Uniq_computer_Converter(Uniq_Computer_of_evkur)
+Uniq_Computer_of_n11 = Uniq_computer_Converter(Uniq_Computer_of_n11)
+Uniq_Computer_of_vatan = Uniq_computer_Converter(Uniq_Computer_of_vatan)
 
 print("Veriseti oluşturuluyor 🔧")
 Global_data_create()
@@ -673,24 +669,30 @@ Global_success_data_to_MongoDB()
 
 print("Veriler başarılı bir şekilde veritabanına aktarıldı ✅✅✅")
 
-''' t1 = threading.Thread(target = _ciceksepeti)
-t2 = threading.Thread(target = _turkcell)
-t3 = threading.Thread(target = _evkur)
-t4 = threading.Thread(target = _trendyol)
-t5 = threading.Thread(target = _teknosa)
-t6 = threading.Thread(target = _vatan)
-t7 = threading.Thread(target = _n11)
-t1.start()
-t2.start()
-t3.start()
-t4.start()
-t5.start()
-t6.start()
-t7.start()
-t1.join()
-t2.join()
-t3.join()
-t4.join()
-t5.join()
-t6.join()
-t7.join() '''
+# print("📌 Turkcell verileri alınıyor...")
+# _turkcell()
+# print("Turkcell verileri alındı ✅")
+
+# print("📌 Teknosa verileri alınıyor...")
+# _teknosa()
+# print("Teknosa verileri alındı ✅")
+
+# print("📌 Evkur verileri alınıyor...")
+# _evkur()
+# print("Evkur verileri alındı ✅")
+
+# print("📌 N11 verileri alınıyor...")
+# _n11()
+# print("N11 verileri alındı ✅")
+
+# print("📌 Ciceksepeti verileri alınıyor...")
+# _ciceksepeti()
+# print("Ciceksepeti verileri alındı ✅")
+
+# print("📌 Vatan Bilgisayar verileri alınıyor...")
+# _vatan()
+# print("Vatan Bilgisayar verileri alındı ✅")
+
+# print("📌 Trendyol verileri alınıyor...")
+# _trendyol()
+# print("Trendyol verileri alındı ✅")
