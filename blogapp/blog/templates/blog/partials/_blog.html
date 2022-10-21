@@ -1,0 +1,17 @@
+ {% load static %}
+ <div class="card mb-3">
+       <div class="row">
+           <div class="col-md-3">
+               <img src="{% static 'img/'|add:blog.image %}" class = "img-fluid" alt="">
+               </div>
+           <div class="col-md-9">
+               <div class="card-body">
+                   <h5 class="card-title">Komple Web Geliştirme Kursu
+                       <a href="{% url 'blog_details' blog.id %}">
+                       </a>
+                   </h5>
+                   <p class="card-text">{{ blog.description }}</p>
+               </div>
+           </div>
+       </div>
+    </div> 
