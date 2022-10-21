@@ -405,28 +405,28 @@ def Site_Model_No_Find(Uniq_Computer):
               if (Model_No.find(j.get("Modelno")) != -1):
                   Uniq_Computer[index].update({"Modelno": j.get("Modelno")})
                   Uniq_Computer[index].update({"ModelAdi": j.get("ModelAdi")})
-                  print(i.get("Site İsmi") + " Model Numarası vatan ile değiştirildi ✨")
+                  print(i.get("Siteİsmi") + " Model Numarası vatan ile değiştirildi ✨")
                   ctrl = 0
         if (ctrl == 1):
             for j in Uniq_Computer_of_evkur:
                 if (Model_No.find(j.get("Modelno")) != -1):
                     Uniq_Computer[index].update({"Modelno": j.get("Modelno")})
                     Uniq_Computer[index].update({"ModelAdi": j.get("ModelAdi")})
-                    print(i.get("Site İsmi") + " Model Numarası evkur ile değiştirildi ✨")
+                    print(i.get("Siteİsmi") + " Model Numarası evkur ile değiştirildi ✨")
                     ctrl = 0
         if (ctrl == 1):
             for j in Uniq_Computer_of_teknosa:
                 if (Model_No.find(j.get("Modelno")) != -1):
                     Uniq_Computer[index].update({"Modelno": j.get("Modelno")})
                     Uniq_Computer[index].update({"ModelAdi": j.get("ModelAdi")})
-                    print(i.get("Site İsmi") + " Model Numarası teknosa ile değiştirildi ✨")
+                    print(i.get("Siteİsmi") + " Model Numarası teknosa ile değiştirildi ✨")
                     ctrl = 0
         if (ctrl == 1):
             for j in Uniq_Computer_of_n11:
                 if (Model_No.find(j.get("Modelno")) != -1):
                     Uniq_Computer[index].update({"Modelno": j.get("Modelno")})
                     Uniq_Computer[index].update({"ModelAdi": j.get("ModelAdi")})
-                    print(i.get("Site İsmi") + " Model Numarası n11 ile değiştirildi ✨")
+                    print(i.get("Siteİsmi") + " Model Numarası n11 ile değiştirildi ✨")
                     ctrl = 0
         index += 1
     return Uniq_Computer
@@ -481,16 +481,16 @@ def Upload_images_links():
     for i in End_computer_data:
         link = "NULL"
         try:
-            if (i.get("Site İsmi") == "evkur"):        
-                link = get_soup(i.get("Site Linki")).find("div", {"class":"image"}).img['src']
-            elif (i.get("Site İsmi") == "n11"):
-                link = get_soup(i.get("Site Linki")).find("div", {"class":"imgObj"}).a['href']
-            elif (i.get("Site İsmi") == "vatan"):
-                link = get_soup(i.get("Site Linki")).find("div", {"class":"swiper-slide"}).a['href']
-            elif (i.get("Site İsmi") == "teknosa"):
-                link = get_soup(i.get("Site Linki")).find("div", {"class":"swiper-slide swiper-slide-active"}).a['href']
-            elif (i.get("Site İsmi") == "Trendyol"):
-                link = get_soup(i.get("Site Linki")).find("div", {"class":"flex-container"}).img['src']
+            if (i.get("Siteİsmi") == "evkur"):        
+                link = get_soup(i.get("SiteLinki")).find("div", {"class":"image"}).img['src']
+            elif (i.get("Siteİsmi") == "n11"):
+                link = get_soup(i.get("SiteLinki")).find("div", {"class":"imgObj"}).a['href']
+            elif (i.get("Siteİsmi") == "vatan"):
+                link = get_soup(i.get("SiteLinki")).find("div", {"class":"swiper-slide"}).a['href']
+            elif (i.get("Siteİsmi") == "teknosa"):
+                link = get_soup(i.get("SiteLinki")).find("div", {"class":"swiper-slide swiper-slide-active"}).a['href']
+            elif (i.get("Siteİsmi") == "Trendyol"):
+                link = get_soup(i.get("SiteLinki")).find("div", {"class":"flex-container"}).img['src']
         except:
             link = "NULL"
         i.update({"image_link": link})
