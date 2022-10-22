@@ -110,7 +110,7 @@ def _teknosa():
       Uniq_Computer_of_teknosa.append(mydict)
       computer_count += 1
       print(str(computer_count) + ". Teknosa")
-    print(str(s_s) + ". Sayfa verileri alındı ✏️")
+    print(str(s_s) + ". Sayfa verileri alındı (Teknosa) ✏️")
 
 def _vatan():
     computer_count = 0
@@ -177,7 +177,7 @@ def _vatan():
           Uniq_Computer_of_vatan.append(mydict)
           computer_count += 1
           print(str(computer_count) + ". Vatan")
-      print(str(s_s) + ". Sayfa verileri alındı ✏️")
+      print(str(s_s) + ". Sayfa verileri alındı (Vatan) ✏️")
 
 def _n11():
   computer_count = 0
@@ -223,7 +223,7 @@ def _n11():
       Uniq_Computer_of_n11.append(mydict)
       computer_count += 1
       print(str(computer_count) + ". N11")
-    print(str(s_s) + ". Sayfa verileri alındı ✏️")
+    print(str(s_s) + ". Sayfa verileri alındı (N11) ✏️")
 
 def _trendyol():
   computer_count = 0
@@ -285,7 +285,7 @@ def _trendyol():
       Uniq_Computer_of_trendyol.append(mydict)
       computer_count += 1
       print(str(computer_count) + ". Trendyol")
-    print(str(s_s) + ". Sayfa verileri alındı ✏️")
+    print(str(s_s) + ". Sayfa verileri alındı (Trendyol) ✏️")
 
 def _evkur():
     computer_count = 0
@@ -344,7 +344,7 @@ def _evkur():
         Uniq_Computer_of_evkur.append(mydict)
         computer_count += 1
         print(str(computer_count) + ". Evkur")
-      print(str(s_s) + ". Sayfa verileri alındı ✏️")
+      print(str(s_s) + ". Sayfa verileri alındı (Evkur) ✏️")
 
 def _ciceksepeti():
     computer_count = 0
@@ -392,7 +392,7 @@ def _ciceksepeti():
             Uniq_Computer_of_ciceksepeti.append(mydict)
             computer_count += 1
             print(str(computer_count) + ". Ciceksepeti")
-        print(str(s_s) + ". Sayfa verileri alındı ✏️")
+        print(str(s_s) + ". Sayfa verileri alındı (Ciceksepeti) ✏️")
 
 #------------------SEARCH MODEL NUMBER ON SITES-------------------
 def Site_Model_No_Find(Uniq_Computer):
@@ -492,9 +492,36 @@ def Global_success_data_to_MongoDB():
             mongo_id += 1
             id_added = {"id": mongo_id}
             id_added.update(a)
+            id_added.update({"İmageLink":get_image_link(id_added)})
             x = mycol.insert_one(id_added)
             End_computer_data.append(i)
             print(k * "🔥")
+
+def get_image_link(i):
+      link = "NULL"
+      if (i.get("Siteİsmi1") != "ciceksepeti"):
+        if (i.get("Siteİsmi1") == "evkur"):      
+            link = get_soup(i.get("SiteLinki1")).find("div", {"class":"image"}).img['src']
+        elif (i.get("Siteİsmi1") == "n11"):
+            link = get_soup(i.get("SiteLinki1")).find("div", {"class":"imgObj"}).a['href']
+        elif (i.get("Siteİsmi1") == "vatan"):
+            link = get_soup(i.get("SiteLinki1")).find("div", {"class":"swiper-slide"}).a['href']
+        elif (i.get("Siteİsmi1") == "teknosa"):
+            link = get_soup(i.get("SiteLinki1")).find("div", {"class":"swiper-slide swiper-slide-active"}).a['href']
+        elif (i.get("Siteİsmi1") == "Trendyol"):
+            link = get_soup(i.get("SiteLinki1")).find("div", {"class":"flex-container"}).img['src']
+      else:
+        if (i.get("Siteİsmi2") == "evkur"):      
+            link = get_soup(i.get("SiteLinki2")).find("div", {"class":"image"}).img['src']
+        elif (i.get("Siteİsmi2") == "n11"):
+            link = get_soup(i.get("SiteLinki2")).find("div", {"class":"imgObj"}).a['href']
+        elif (i.get("Siteİsmi2") == "vatan"):
+            link = get_soup(i.get("SiteLinki2")).find("div", {"class":"swiper-slide"}).a['href']
+        elif (i.get("Siteİsmi2") == "teknosa"):
+            link = get_soup(i.get("SiteLinki2")).find("div", {"class":"swiper-slide swiper-slide-active"}).a['href']
+        elif (i.get("Siteİsmi2") == "Trendyol"):
+            link = get_soup(i.get("SiteLinki2")).find("div", {"class":"flex-container"}).img['src']
+      return (link)
 
 #------------------SEARCH LINKS TO COMPUTER PICTURES-------------------
 def Upload_images_links():
