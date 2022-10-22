@@ -58,7 +58,7 @@ def my_atoi(str):
 
 def _teknosa():
   computer_count = 0
-  for s_s in range(1, 10):
+  for s_s in range(1, 4):
     Link_one = get_soup(teknosa.format(s_s))
     x = Link_one.find_all("div",{"id":"product-item"})
     for s in x:
@@ -114,7 +114,7 @@ def _teknosa():
 
 def _vatan():
     computer_count = 0
-    for s_s in range(1, 50): 
+    for s_s in range(1, 4): 
       page = get_soup(vatan.format(s_s)).find_all("div", {"class":"product-list product-list--list-page"})
       for i in page:
           link_site = V + i.a['href']
@@ -181,7 +181,7 @@ def _vatan():
 
 def _n11():
   computer_count = 0
-  for s_s in range(1, 50):
+  for s_s in range(1, 4):
     Link_one = get_soup(n11.format(s_s)).find_all("div", {"class":"pro"})
     for i in Link_one:
       link_site = i.a['href']
@@ -228,7 +228,7 @@ def _n11():
 def _trendyol():
   computer_count = 0
   row = 1
-  for s_s in range(1, 50):
+  for s_s in range(1, 4):
     Link_one = get_soup(Trendyol.format(s_s))
     computers = Link_one.find_all("div", {"class":"p-card-wrppr with-campaign-view"})
     Links_points = Link_one.find_all("div", {"class":"product-down"})
@@ -297,7 +297,7 @@ def _evkur():
     Disk = "null"
     DiskType = "null"
     screen = "null"
-    for s_s in range(1, 3):
+    for s_s in range(1, 4):
       main_page = get_soup(evkur.format(s_s)).find("div", {"class":"products"}).find_all("div", {"class":"product-mobile-wrapper"})
       for s in main_page:
         link_site = evkur_site + s.a['href']
@@ -355,7 +355,7 @@ def _ciceksepeti():
     Disk = "null"
     DiskType = "null"
     screen = "null"
-    for s_s in range(1, 50):
+    for s_s in range(1, 4):
         page = get_soup(ciceksepeti.format(s_s)).find("div", {"class":"products products--category js-ajax-category-products"})
         pages = page.find_all("div",{"class":"products__item js-category-item-hover js-product-item-for-countdown js-product-item"})
         for x in pages[:30]:
@@ -464,17 +464,32 @@ def Global_data_create():
 #------------------SEND MATCHİNG DATA TO MONGODB-------------------
 def Global_success_data_to_MongoDB():
   mongo_id = 0
+  duplicate_control = []
   for i in Global_Computer_Data:
       k = 0
+      a = {}
       for j in Global_Computer_Data:
           if (i.get("Modelno") == j.get("Modelno")):
               k += 1
+              if (k == 1):
+                  a.update(j)
+                  a.pop("Puanı")
+                  a.pop("Fiyat")
+                  a.pop("Siteİsmi")
+                  a.pop("SiteLinki")
+              a.update({"Puanı" + str(k):j.get("Puanı")})
+              a.update({"Fiyat" + str(k):j.get("Fiyat")})
+              a.update({"Siteİsmi" + str(k):j.get("Siteİsmi")})
+              a.update({"SiteLinki" + str(k):j.get("SiteLinki")})    
       if (k >= 2):
-          mongo_id += 1
-          i.update({"id": mongo_id})
-          x = mycol.insert_one(i)
-          End_computer_data.append(i)
-          print(k * "🔥")
+          if a.get("Modelno") not in duplicate_control:
+            duplicate_control.append(a.get("Modelno"))
+            mongo_id += 1
+            id_added = {"id": mongo_id}
+            id_added.update(a)
+            x = mycol.insert_one(id_added)
+            End_computer_data.append(i)
+            print(k * "🔥")
 
 #------------------SEARCH LINKS TO COMPUTER PICTURES-------------------
 def Upload_images_links():
