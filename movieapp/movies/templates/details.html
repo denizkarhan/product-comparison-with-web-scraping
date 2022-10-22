@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    {% include 'partials/_navbar.html' %}
+    <div class="container mt-3">
+        <div class = "row">
+            <div class="col-12">
+                <div class="card mb-3">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="border border-primary">
+                            <img src="{% static 'img/2.jpg' %}" class = "img-fluid" alt="">
+                            </div>
+                            </div>
+                        <div class="col-md-9">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ laptoplar.Marka }} {{ laptoplar.ModelAdi}} {{ laptoplar.Modelno }} {{ laptoplar.İslemciTipi }} {{ laptoplar.İslemciNesli }} {{ laptoplar.Ram }} Ram {{ laptoplar.DiskBoyutu }} {{ laptoplar.DiskTürü }} {{ laptoplar.EkranBoyutu }} Laptop
+                                 <a href="#">
+                                 </a>
+                                </h5>
+                                <div class = "row border border-primary my-2">
+                                    <div class = "col-2 py-3 my-1 border border-red py-2">
+                                    </div>
+                                    <div class = "col-7 py-2 border border-red">asdaddaadsdsadsadsasdasadsdsadsadsasadadsdsasddsadassdadsasaddsadsadadsads</div>
+                                    <div class = "col-3 border border-red">
+                                        <div class="row border border-warning">Fiyat Bilgisi Fiyat Bilgisi Fiyat Bilgisi Fiyat Bilgisi</div>
+                                        <div class="row align-items-end">
+                                            <a class="btn btn-primary" href="link buraya" role="button">Mağazaya Git</a>
+                                        </div>
+                                    </div>
+                                    </div>
+                                 <div class = "row border border-primary my-2">
+                                    <div class = "col-2 py-3 my-1 border border-red py-2">                
+                                    </div>
+                                    <div class = "col-7 py-2 border border-red">{{ film.Modelno }}</div>
+                                    <div class = "col-3 border border-red">
+                                        <div class="row border border-warning">Fiyat Bilgisi Fiyat Bilgisi Fiyat Bilgisi Fiyat Bilgisi</div>
+                                        <div class="row align-items-end">
+                                            <a class="btn btn-primary" href="link buraya" role="button">Mağazaya Git</a>
+                                        </div>
+                                    </div>
+                                    </div>
+                                <div class = "row border border-primary my-2">
+                                     <div class = "col-2 py-3 my-1 border border-red py-2">
+                                     </div>
+                                     <div class = "col-7 py-2 border border-red">asdaddaadsdsadsadsasdasadsdsadsadsasadadsdsasddsadassdadsasaddsadsadadsads</div>
+                                    <div class = "col-3 border border-red">
+                                        <div class="row border border-warning">Fiyat Bilgisi Fiyat Bilgisi Fiyat Bilgisi Fiyat Bilgisi</div>
+                                        <div class="row align-items-end">
+                                            <a class="btn btn-primary" href="link buraya" role="button">Mağazaya Git</a>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ürün Özellikleri</h3>
+                                    <table class="table table-hover">
+      <thead>
+        <tr>
+            <th scope="col">Marka</th>
+            <th scope="col">Model</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+            <td>{{laptoplar.Marka}}</td>
+            <td>{{laptoplar.ModelAdi}}</td>
+        </tr>
+        <tr>
+            <th scope="col">Model No</th>
+            <th scope="col">İşletim Sistemi</th>
+        </tr>
+        <tr>
+            <td>{{laptoplar.Modelno}}</td>
+            <td>{{laptoplar.İşletimSistemi}}</td>
+        </tr>
+        <tr>
+            <th scope="col">İşlemci Tipi</th>
+            <th scope="col">İşlemci Nesli</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{laptoplar.İslemciTipi}}</td>
+            <td>{{laptoplar.İslemciNesli}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Ram</th>
+            <th scope="col">Ekran Boyutu</th>
+          </tr>
+          <tr>
+            <td>{{laptoplar.Ram}}</td>
+            <td>{{laptoplar.EkranBoyutu}}</td>
+          </tr>
+          <tr>
+            <th scope="col">Disk Boyutu</th>
+            <th scope="col">Disk Türü</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{laptoplar.DiskBoyutu}}</td>
+            <td>{{laptoplar.DiskTürü}}</td>
+          </tr>
+      </tbody>
+    </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                 </div> 
+            </div>
+        </div>
+</body>
+</html>

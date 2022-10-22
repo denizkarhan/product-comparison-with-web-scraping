@@ -1,0 +1,15 @@
+{% load static %}
+
+<div class ="row">
+    <div class="col-4 g-4">
+        <div class="card" style="width: 18rem;">
+        <img src="{% static 'img/2.jpg' %}" alt="" style="width:200px;">
+        <div class="card-body">
+        <h6 class="card-title">{{ film.Marka }} {{ film.Modelno }}</h6>
+        <p class ="card-text"></p>
+        <a href="{% url 'details' film.id %}" class="btn btn-primary">Detayları Gör</a>
+        <h1>{{ film.Fiyat }}</h1>
+         </div>
+       </div>
+    </div>
+ </div>
