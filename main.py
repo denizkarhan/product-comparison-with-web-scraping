@@ -480,7 +480,12 @@ def Global_success_data_to_MongoDB():
               a.update({"Puanı" + str(k):j.get("Puanı")})
               a.update({"Fiyat" + str(k):j.get("Fiyat")})
               a.update({"Siteİsmi" + str(k):j.get("Siteİsmi")})
-              a.update({"SiteLinki" + str(k):j.get("SiteLinki")})    
+              a.update({"SiteLinki" + str(k):j.get("SiteLinki")})
+      for j in range(k + 1, 5):
+          a.update({"Puanı" + str(j):"NULL"})
+          a.update({"Fiyat" + str(j):"NULL"})
+          a.update({"Siteİsmi" + str(j):"NULL"})
+          a.update({"SiteLinki" + str(j):"NULL"})
       if (k >= 2):
           if a.get("Modelno") not in duplicate_control:
             duplicate_control.append(a.get("Modelno"))
