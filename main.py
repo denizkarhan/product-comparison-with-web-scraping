@@ -58,7 +58,7 @@ def my_atoi(str):
 
 def _teknosa():
   computer_count = 0
-  for s_s in range(1, 4):
+  for s_s in range(1, 2):
     Link_one = get_soup(teknosa.format(s_s))
     x = Link_one.find_all("div",{"id":"product-item"})
     for s in x:
@@ -461,44 +461,68 @@ def Global_data_create():
       Global_Computer_Data = Uniq_Computer_of_ciceksepeti + Uniq_Computer_of_evkur + Uniq_Computer_of_n11 + Uniq_Computer_of_vatan + Uniq_Computer_of_teknosa + Uniq_Computer_of_trendyol
       return Global_Computer_Data
 
+def Price_list_update(a):
+    for i in range(1, 6):
+      for j in range(i, 6):
+        if (a.get("Fiyat" + str(i)) != "NULL" and a.get("Fiyat" + str(j)) != "NULL"):
+          if (int(a.get("Fiyat" + str(i))) > int(a.get("Fiyat" + str(j)))):
+              Puanı = a.get("Puanı" + str(j))
+              Fiyat = a.get("Fiyat" + str(j))
+              Siteİsmi = a.get("Siteİsmi" + str(j))
+              SiteLinki = a.get("SiteLinki" + str(j))
+              
+              a.update({"Puanı" + str(j): a.get("Puanı" + str(i))})
+              a.update({"Fiyat" + str(j): a.get("Fiyat" + str(i))})
+              a.update({"Siteİsmi" + str(j): a.get("Siteİsmi" + str(i))})
+              a.update({"SiteLinki" + str(j): a.get("SiteLinki" + str(i))})
+              
+              a.update({"Puanı" + str(i): Puanı})
+              a.update({"Fiyat" + str(i): Fiyat})
+              a.update({"Siteİsmi" + str(i): Siteİsmi})
+              a.update({"SiteLinki" + str(i): SiteLinki})
+    return (a)
+
 #------------------SEND MATCHİNG DATA TO MONGODB-------------------
 def Global_success_data_to_MongoDB():
-  mongo_id = 0
-  duplicate_control = []
-  for i in Global_Computer_Data:
-      k = 0
-      a = {}
-      for j in Global_Computer_Data:
-          if (i.get("Modelno") == j.get("Modelno")):
-              k += 1
-              if (k == 1):
-                  a.update(j)
-                  a.pop("Puanı")
-                  a.pop("Fiyat")
-                  a.pop("Siteİsmi")
-                  a.pop("SiteLinki")
-              a.update({"Puanı" + str(k):j.get("Puanı")})
-              a.update({"Fiyat" + str(k):j.get("Fiyat")})
-              a.update({"Siteİsmi" + str(k):j.get("Siteİsmi")})
-              a.update({"SiteLinki" + str(k):j.get("SiteLinki")})
-      for j in range(k + 1, 6):
-          a.update({"Puanı" + str(j):"NULL"})
-          a.update({"Fiyat" + str(j):"NULL"})
-          a.update({"Siteİsmi" + str(j):"NULL"})
-          a.update({"SiteLinki" + str(j):"NULL"})
-      if (k >= 2):
-          if a.get("Modelno") not in duplicate_control:
-            duplicate_control.append(a.get("Modelno"))
-            mongo_id += 1
-            id_added = {"id": mongo_id}
-            id_added.update(a)
-            id_added.update({"İmageLink":get_image_link(id_added)})
-            x = mycol.insert_one(id_added)
-            End_computer_data.append(i)
-            print(k * "🔥")
+    mongo_id = 0
+    duplicate_control = []
+    for i in Global_Computer_Data:
+        k = 0
+        a = {}
+        for j in Global_Computer_Data:
+            if (i.get("Modelno") == j.get("Modelno")):
+                k += 1
+                if (k == 1):
+                    a.update(j)
+                    a.pop("Puanı")
+                    a.pop("Fiyat")
+                    a.pop("Siteİsmi")
+                    a.pop("SiteLinki")
+                a.update({"Puanı" + str(k):j.get("Puanı")})
+                a.update({"Fiyat" + str(k):str(my_atoi(j.get("Fiyat")))})
+                a.update({"Siteİsmi" + str(k):j.get("Siteİsmi")})
+                a.update({"SiteLinki" + str(k):j.get("SiteLinki")})
+        for j in range(k + 1, 6):
+            a.update({"Puanı" + str(j):"NULL"})
+            a.update({"Fiyat" + str(j):"NULL"})
+            a.update({"Siteİsmi" + str(j):"NULL"})
+            a.update({"SiteLinki" + str(j):"NULL"})
+        if (k >= 2):
+            if a.get("Modelno") not in duplicate_control:
+              duplicate_control.append(a.get("Modelno"))
+              mongo_id += 1
+              id_added = {"id": mongo_id}
+              a = Price_list_update(a)
+              id_added.update(a)
+              id_added.update({"İmageLink":get_image_link(id_added)})
+              x = mycol.insert_one(id_added)
+              End_computer_data.append(id_added)
+              print(k * "🔥")
+    return End_computer_data
 
 def get_image_link(i):
-      link = "NULL"
+    link = "NULL"
+    try:
       if (i.get("Siteİsmi1") != "ciceksepeti"):
         if (i.get("Siteİsmi1") == "evkur"):      
             link = get_soup(i.get("SiteLinki1")).find("div", {"class":"image"}).img['src']
@@ -521,37 +545,31 @@ def get_image_link(i):
             link = get_soup(i.get("SiteLinki2")).find("div", {"class":"swiper-slide swiper-slide-active"}).a['href']
         elif (i.get("Siteİsmi2") == "Trendyol"):
             link = get_soup(i.get("SiteLinki2")).find("div", {"class":"flex-container"}).img['src']
-      return (link)
+    except:
+        if (i.get("Siteİsmi2") == "evkur"):      
+            link = get_soup(i.get("SiteLinki2")).find("div", {"class":"image"}).img['src']
+        elif (i.get("Siteİsmi2") == "n11"):
+            link = get_soup(i.get("SiteLinki2")).find("div", {"class":"imgObj"}).a['href']
+        elif (i.get("Siteİsmi2") == "vatan"):
+            link = get_soup(i.get("SiteLinki2")).find("div", {"class":"swiper-slide"}).a['href']
+        elif (i.get("Siteİsmi2") == "teknosa"):
+            link = get_soup(i.get("SiteLinki2")).find("div", {"class":"swiper-slide swiper-slide-active"}).a['href']
+        elif (i.get("Siteİsmi2") == "Trendyol"):
+            link = get_soup(i.get("SiteLinki2")).find("div", {"class":"flex-container"}).img['src']
+    return (link)
 
-#------------------SEARCH LINKS TO COMPUTER PICTURES-------------------
-def Upload_images_links():
+#------------------DOWNLOAND İMAGE AND MOVE DİRECTORY-------------------
+def Download_images(End_computer_data):
+    id = 0
     for i in End_computer_data:
-        link = "NULL"
+        id += 1
+        url = i.get("İmageLink")
+        print(url)
         try:
-            if (i.get("Siteİsmi") == "evkur"):        
-                link = get_soup(i.get("SiteLinki")).find("div", {"class":"image"}).img['src']
-            elif (i.get("Siteİsmi") == "n11"):
-                link = get_soup(i.get("SiteLinki")).find("div", {"class":"imgObj"}).a['href']
-            elif (i.get("Siteİsmi") == "vatan"):
-                link = get_soup(i.get("SiteLinki")).find("div", {"class":"swiper-slide"}).a['href']
-            elif (i.get("Siteİsmi") == "teknosa"):
-                link = get_soup(i.get("SiteLinki")).find("div", {"class":"swiper-slide swiper-slide-active"}).a['href']
-            elif (i.get("Siteİsmi") == "Trendyol"):
-                link = get_soup(i.get("SiteLinki")).find("div", {"class":"flex-container"}).img['src']
+          urllib.request.urlretrieve(url, str(id) + ".jpg")
+          shutil.move(str(i.get("id")) + ".jpg", "resimler")
         except:
-            link = "NULL"
-        i.update({"image_link": link})
-        image_computer_links.append(i)
-
-#------------------DOWNLOAD İMAGE AND MOVE DİRECTORY-------------------
-def Download_images():
-      for i in image_computer_links:
-            url = i.get("image_link")
-            try:
-              urllib.request.urlretrieve(url, str(i.get("id")) + ".jpg")
-              shutil.move(str(i.get("id")) + ".jpg", "resimler")
-            except:
-              print("Resim indirilemedi")
+          print("Resim indirilemedi !!!")
 
 #------------------MULTI THREADING STARTING-------------------
 t1 = threading.Thread(target = _ciceksepeti)
@@ -594,12 +612,11 @@ Uniq_Computer_of_vatan = Uniq_computer_Converter(Uniq_Computer_of_vatan)
 print("Veriseti oluşturuluyor 🔧")
 Global_Computer_Data = Global_data_create()
 print("Veriler MongoDB'ye aktarılıyor 📝")
-Global_success_data_to_MongoDB()
+End_computer_data = Global_success_data_to_MongoDB()
 print("Veriler başarılı bir şekilde veritabanına aktarıldı ✅✅✅")
 
 #------------------IMAGE DOWNLOAD2-------------------
 ''' print("Resimler indiriliyor 🔧🔧🔧")
-Upload_images_links()
-Download_images()
-print("Resimler indirildi ✅✅✅")
- '''
+Download_images(End_computer_data)
+print("Resimler indirildi ✅✅✅") '''
+
