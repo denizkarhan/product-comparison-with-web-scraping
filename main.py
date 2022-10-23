@@ -58,7 +58,7 @@ def my_atoi(str):
 
 def _teknosa():
   computer_count = 0
-  for s_s in range(1, 2):
+  for s_s in range(1, 15):
     Link_one = get_soup(teknosa.format(s_s))
     x = Link_one.find_all("div",{"id":"product-item"})
     for s in x:
@@ -114,7 +114,7 @@ def _teknosa():
 
 def _vatan():
     computer_count = 0
-    for s_s in range(1, 4): 
+    for s_s in range(1, 50): 
       page = get_soup(vatan.format(s_s)).find_all("div", {"class":"product-list product-list--list-page"})
       for i in page:
           link_site = V + i.a['href']
@@ -181,7 +181,7 @@ def _vatan():
 
 def _n11():
   computer_count = 0
-  for s_s in range(1, 4):
+  for s_s in range(1, 50):
     Link_one = get_soup(n11.format(s_s)).find_all("div", {"class":"pro"})
     for i in Link_one:
       link_site = i.a['href']
@@ -228,7 +228,7 @@ def _n11():
 def _trendyol():
   computer_count = 0
   row = 1
-  for s_s in range(1, 4):
+  for s_s in range(1, 50):
     Link_one = get_soup(Trendyol.format(s_s))
     computers = Link_one.find_all("div", {"class":"p-card-wrppr with-campaign-view"})
     Links_points = Link_one.find_all("div", {"class":"product-down"})
@@ -297,7 +297,7 @@ def _evkur():
     Disk = "null"
     DiskType = "null"
     screen = "null"
-    for s_s in range(1, 4):
+    for s_s in range(1, 3):
       main_page = get_soup(evkur.format(s_s)).find("div", {"class":"products"}).find_all("div", {"class":"product-mobile-wrapper"})
       for s in main_page:
         link_site = evkur_site + s.a['href']
@@ -355,7 +355,7 @@ def _ciceksepeti():
     Disk = "null"
     DiskType = "null"
     screen = "null"
-    for s_s in range(1, 4):
+    for s_s in range(1, 50):
         page = get_soup(ciceksepeti.format(s_s)).find("div", {"class":"products products--category js-ajax-category-products"})
         pages = page.find_all("div",{"class":"products__item js-category-item-hover js-product-item-for-countdown js-product-item"})
         for x in pages[:30]:
