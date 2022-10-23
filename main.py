@@ -535,16 +535,19 @@ def get_image_link(i):
         elif (i.get("Siteİsmi1") == "Trendyol"):
             link = get_soup(i.get("SiteLinki1")).find("div", {"class":"flex-container"}).img['src']
       else:
-        if (i.get("Siteİsmi2") == "evkur"):      
-            link = get_soup(i.get("SiteLinki2")).find("div", {"class":"image"}).img['src']
-        elif (i.get("Siteİsmi2") == "n11"):
-            link = get_soup(i.get("SiteLinki2")).find("div", {"class":"imgObj"}).a['href']
-        elif (i.get("Siteİsmi2") == "vatan"):
-            link = get_soup(i.get("SiteLinki2")).find("div", {"class":"swiper-slide"}).a['href']
-        elif (i.get("Siteİsmi2") == "teknosa"):
-            link = get_soup(i.get("SiteLinki2")).find("div", {"class":"swiper-slide swiper-slide-active"}).a['href']
-        elif (i.get("Siteİsmi2") == "Trendyol"):
-            link = get_soup(i.get("SiteLinki2")).find("div", {"class":"flex-container"}).img['src']
+        try:
+          if (i.get("Siteİsmi2") == "evkur"):      
+              link = get_soup(i.get("SiteLinki2")).find("div", {"class":"image"}).img['src']
+          elif (i.get("Siteİsmi2") == "n11"):
+              link = get_soup(i.get("SiteLinki2")).find("div", {"class":"imgObj"}).a['href']
+          elif (i.get("Siteİsmi2") == "vatan"):
+              link = get_soup(i.get("SiteLinki2")).find("div", {"class":"swiper-slide"}).a['href']
+          elif (i.get("Siteİsmi2") == "teknosa"):
+              link = get_soup(i.get("SiteLinki2")).find("div", {"class":"swiper-slide swiper-slide-active"}).a['href']
+          elif (i.get("Siteİsmi2") == "Trendyol"):
+              link = get_soup(i.get("SiteLinki2")).find("div", {"class":"flex-container"}).img['src']
+        except:
+          pass
     except:
         if (i.get("Siteİsmi2") == "evkur"):      
             link = get_soup(i.get("SiteLinki2")).find("div", {"class":"image"}).img['src']
@@ -619,4 +622,3 @@ print("Veriler başarılı bir şekilde veritabanına aktarıldı ✅✅✅")
 ''' print("Resimler indiriliyor 🔧🔧🔧")
 Download_images(End_computer_data)
 print("Resimler indirildi ✅✅✅") '''
-
