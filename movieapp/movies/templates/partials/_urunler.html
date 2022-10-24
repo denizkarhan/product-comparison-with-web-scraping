@@ -2,9 +2,9 @@
 
     <div class="g-4">
         <div class="card text-center" style="width: 18rem;">
-        <img src="{% static 'img/3.jpg' %}" alt="" style="width:200px; " class="rounded mx-auto d-block">
+        <img src="{{ notebook.İmageLink }}" alt="" style="width:200px; " class="rounded mx-auto d-block">
         <div class="card-body">
-        <h6 class="card-title">{{ notebook.Marka }} {{ notebook.ModelAdi}} {{ notebook.Modelno }} {{ notebook.İslemciTipi }} {{ notebook.İslemciNesli }} {{ notebook.Ram }} Ram {{ notebook.DiskBoyutu }} {{ notebook.DiskTürü }} {{ notebook.EkranBoyutu }} Laptop</h6>
+        <h6 class="card-title"> {{ notebook.Marka }} {{ notebook.ModelAdi}} {{ notebook.Modelno }} {{ notebook.İslemciTipi }} {{ notebook.İslemciNesli }} {{ notebook.Ram }} Ram {{ notebook.DiskBoyutu }} {{ notebook.DiskTürü }} {{ notebook.EkranBoyutu }} Laptop</h6>
         <p class ="card-text"></p>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
@@ -21,11 +21,7 @@
           {% elif notebook.Siteİsmi1 == "vatan" %}
             <img src="{% static 'img/vatan.jpeg' %}" class = "img-fluid" style="width:60px;" alt=""> 
           {% endif %} 
-          {% if notebook.Siteİsmi1 == "Trendyol" %}
-            {{ notebook.Fiyat1 }}
-          {% else %} 
-            {{ notebook.Fiyat1 }} TL
-          {% endif %}</li>
+            {{ notebook.Fiyat1 }} TL</li>
           <li class="list-group-item">
           {% if notebook.Siteİsmi2 == "ciceksepeti" %}
             <img src="{% static 'img/ciceksepeti.jpeg' %}" class = "img-fluid" style="width:60px;" alt=""> 
@@ -40,13 +36,9 @@
           {% elif notebook.Siteİsmi2 == "vatan" %}
             <img src="{% static 'img/vatan.jpeg' %}" class = "img-fluid" style="width:60px;" alt=""> 
           {% endif %} 
-          {% if notebook.Siteİsmi2 == "Trendyol" %}
-            {{ notebook.Fiyat2 }}
-          {% else %} 
-            {{ notebook.Fiyat2 }} TL
-          {% endif %}</li>
+            {{ notebook.Fiyat2 }} TL</li>
         </ul>
-        <a href="{% url 'details' notebook.id %}" class="btn btn-primary" style="font-size: 80%">Detayları Gör</a>
+        <a href="{% url 'details' notebook.id %}" class="btn btn-primary" style="font-size: 85%">Detayları Gör</a>
         <h1>{{ film.Fiyat }}</h1>
          </div>
        </div>

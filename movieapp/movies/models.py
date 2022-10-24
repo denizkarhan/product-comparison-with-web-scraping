@@ -101,6 +101,20 @@ class Data3(models.Model):
     Fiyat2 = models.BigIntegerField(null=True)
     Siteİsmi2 = models.CharField(max_length=200, null=True)
     SiteLinki2 = models.CharField(max_length=200, null=True)
+    Puanı3 = models.BigIntegerField(null=True)
+    Fiyat3 = models.BigIntegerField(null=True)
+    Siteİsmi3 = models.CharField(max_length=200, null=True)
+    SiteLinki3 = models.CharField(max_length=200, null=True)
+    Puanı4 = models.BigIntegerField(null=True)
+    Fiyat4 = models.BigIntegerField(null=True)
+    Siteİsmi4 = models.CharField(max_length=200, null=True)
+    SiteLinki4 = models.CharField(max_length=200, null=True)
+    Puanı5 = models.BigIntegerField(null=True)
+    Fiyat5 = models.BigIntegerField(null=True)
+    Siteİsmi5 = models.CharField(max_length=200, null=True)
+    SiteLinki5 = models.CharField(max_length=200, null=True)
+    İmageLink = models.CharField(max_length=200, null=True)
+
     
 
 
