@@ -6,7 +6,7 @@ from xlwt import Workbook
 
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = myclient["admin"]
-mycol = mydb["aciklama"]
+mycol = mydb["Dataset"]
 
 Trendyol = "https://www.trendyol.com/laptop-x-c103108?pi={0}"
 T = "https://www.trendyol.com"
@@ -206,7 +206,7 @@ def _n11():
             ss = i.text[6:].strip(" \n").split(" ")
             if (len(ss) > 1):
               Model_adi = " ".join(ss[:len(ss) - 1]).strip(" \n")
-            Model_no = (ss[len(ss) - 1]).strip(" \n").upper()
+            Model_no = i.text[6:].strip(" \n").upper()
           elif (key.find("İşletim Sistemi") != -1):
             OS = key[17:].strip(" \n")
           elif (key.find("İşlemci Modeli") != -1):
@@ -434,6 +434,10 @@ def Site_Model_No_Find(Uniq_Computer):
                     Uniq_Computer[index].update({"ModelAdi": j.get("ModelAdi")})
                     print(i.get("Siteİsmi") + " Model Numarası n11 ile değiştirildi ✨")
                     ctrl = 0
+        if (i.get("Siteİsmi") == "n11"):
+            str_count = len(i.get("Modelno").split(" "))
+            if (str_count > 1):
+                Uniq_Computer[index].update({"Modelno": "NULL"})
         index += 1
     return Uniq_Computer
 
@@ -609,6 +613,8 @@ t5.join()
 t6.join()
 
 #------------------MODEL NUMBER FINDER-------------------
+print("N11 verileri için Model Numarası aranıyor 🔍")
+Uniq_Computer_of_n11 = Site_Model_No_Find(Uniq_Computer_of_n11)
 print("Ciceksepeti verileri için Model Numarası aranıyor 🔍")
 Uniq_Computer_of_ciceksepeti = Site_Model_No_Find(Uniq_Computer_of_ciceksepeti)
 print("Trendyol verileri için Model Numarası aranıyor 🔍")
