@@ -19,7 +19,7 @@
             <div class="col-12">
                 <div class="card mb-3">
                     <div class="row">
-                        <div class="col-md-3"> <h5></h5>
+                        <div class="col-md-3">
                             <div class="col border border-secondary">
                             <img src="{{ laptoplar.İmageLink }}" alt="" style="width:200px; " class="rounded mx-auto d-block">
                             </div>
@@ -174,7 +174,7 @@
                                             <img src="{% static 'img/kargo.jpeg' %}" class = "" style="width:43px;" alt=""> 
                                         </div>
                                     </div>
-                                    <div class = "col-3 border border-secondary">
+                                    <div class = "col-3 border border-red">
                                         <div class="row-4"><p></p></div>
                                         <div class="row-4 text-center border border-secondary">    
                                           <h4>{{ laptoplar.Fiyat2 }} TL</h4></div>
@@ -250,7 +250,7 @@
                                              </div>
                                         </div>
                                       </div>
-                                      <div class = "col-3 border border-secondary">
+                                      <div class = "col-3 border border-red">
                                         <div class="row-4"><p></p></div>
                                         <div class="row-4 text-center border border-secondary">    
                                           <h4>{{ laptoplar.Fiyat3 }} TL</h4></div>
@@ -261,7 +261,7 @@
                                       </div>
                                     {% endif %}
                                     {% if laptoplar.SiteLinki4 != "NULL" %} 
-                                    <div class = "row border border-secondary my-2">
+                                    <div class = "row border border-primary my-2">
                                       <div class = "col-2 py-3 my-1 border border-red py-2">
                                         {% if laptoplar.Siteİsmi4 == "ciceksepeti" %}
                                           <img src="{% static 'img/ciceksepeti.jpeg' %}" class = "img-fluid" alt=""> 
@@ -277,7 +277,7 @@
                                           <img src="{% static 'img/vatan.jpeg' %}" class = "img-fluid" alt=""> 
                                         {% endif %}               
                                       </div>
-                                      <div class = "col-4 py-2 border ">açıklama</div>
+                                      <div class = "col-4 py-2 border border-red">açıklama</div>
                                       <div class = "col-3 text-center">
                                           <div class ="row-3 border">
                                               {% if laptoplar.Puanı4 == "5.0" %}
@@ -326,7 +326,7 @@
                                              </div>
                                         </div>
                                       </div>
-                                      <div class = "col-3 border border-secondary">
+                                      <div class = "col-3 border border-red">
                                         <div class="row-4"><p></p></div>
                                         <div class="row-4 text-center border border-secondary">    
                                           <h4>{{ laptoplar.Fiyat4 }} TL</h4></div>
@@ -337,8 +337,8 @@
                                       </div>
                                     {% endif %}
                                     {% if laptoplar.SiteLinki5 != "NULL" %} 
-                                    <div class = "row border border-secondary my-2">
-                                      <div class = "col-2 py-3 my-1 border border-secondary py-2">
+                                    <div class = "row border border-primary my-2">
+                                      <div class = "col-2 py-3 my-1 border border-red py-2">
                                         {% if laptoplar.Siteİsmi5 == "ciceksepeti" %}
                                           <img src="{% static 'img/ciceksepeti.jpeg' %}" class = "img-fluid" alt=""> 
                                         {% elif laptoplar.Siteİsmi5 == "n11" %}
@@ -353,7 +353,7 @@
                                           <img src="{% static 'img/vatan.jpeg' %}" class = "img-fluid" alt=""> 
                                         {% endif %}               
                                       </div>
-                                      <div class = "col-4 py-2 border">açıklama</div>
+                                      <div class = "col-4 py-2 border border-red">açıklama</div>
                                       <div class = "col-3 text-center">
                                           <div class ="row-3 border">
                                               {% if laptoplar.Puanı5 == "5.0" %}
