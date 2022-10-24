@@ -6,7 +6,7 @@ from xlwt import Workbook
 
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = myclient["admin"]
-mycol = mydb["Dataset"]
+mycol = mydb["aciklama"]
 
 Trendyol = "https://www.trendyol.com/laptop-x-c103108?pi={0}"
 T = "https://www.trendyol.com"
@@ -58,13 +58,14 @@ def my_atoi(str):
 
 def _teknosa():
   computer_count = 0
-  for s_s in range(1, 15):
+  for s_s in range(1, 4):
     Link_one = get_soup(teknosa.format(s_s))
     x = Link_one.find_all("div",{"id":"product-item"})
     for s in x:
         Link_two.append(tekno + s.a['href'])
     for link_site in Link_two:
       computer = get_soup(link_site)
+      _aciklama = computer.find("div", {"class":"pdp-base"}).h1.text.strip(" \n\r")
       try:
         Title = computer.find("div", {"class":"rch-brand"}).text.strip(" \n").split(" ")
       except:
@@ -106,7 +107,7 @@ def _teknosa():
           elif (Ozellik_adi2[k].find("Ekran Boyutu") != -1):
             screen = Ozellik_aciklamasi2[k].strip(" \n")
       mydict = { "Marka": Marka, "ModelAdi": Model_adi, "Modelno": Model_no, "İşletimSistemi": OS, "İslemciTipi": cpuType, "İslemciNesli": cpuStatus, "Ram": ram,
-                "DiskBoyutu": Disk, "DiskTürü": DiskType, "EkranBoyutu": screen, "Puanı": puan, "Fiyat": fiyat, "Siteİsmi": "teknosa", "SiteLinki": link_site }
+                "DiskBoyutu": Disk, "DiskTürü": DiskType, "EkranBoyutu": screen, "Puanı": puan, "Fiyat": fiyat, "Siteİsmi": "teknosa", "SiteLinki": link_site, "Title": _aciklama }
       Uniq_Computer_of_teknosa.append(mydict)
       computer_count += 1
       print(str(computer_count) + ". Teknosa")
@@ -114,11 +115,12 @@ def _teknosa():
 
 def _vatan():
     computer_count = 0
-    for s_s in range(1, 50): 
+    for s_s in range(1, 4): 
       page = get_soup(vatan.format(s_s)).find_all("div", {"class":"product-list product-list--list-page"})
       for i in page:
           link_site = V + i.a['href']
           page2 = get_soup(V + i.a['href'])
+          _aciklama = page2.find("div", {"class":"product-list__content product-detail-big-price"}).h1.text.strip(" \n\r")
           try:
             puan = str(page2.find("div", {"class":"rank-star"}))
             puan = puan[puan.find("width:") + 6:puan.find("%")].strip(" \n\r")
@@ -173,7 +175,7 @@ def _vatan():
               elif (key[i].find("Üretici Part Numarası") != -1):
                   Model_no = value[i].strip(" \n").upper()
           mydict = { "Marka": Marka, "ModelAdi": Model_adi, "Modelno": Model_no, "İşletimSistemi": OS, "İslemciTipi": cpuType, "İslemciNesli": cpuStatus,
-                    "Ram": ram, "DiskBoyutu": Disk, "DiskTürü": DiskType, "EkranBoyutu": screen, "Puanı": puan, "Fiyat": fiyat, "Siteİsmi": "vatan", "SiteLinki": link_site }
+                    "Ram": ram, "DiskBoyutu": Disk, "DiskTürü": DiskType, "EkranBoyutu": screen, "Puanı": puan, "Fiyat": fiyat, "Siteİsmi": "vatan", "SiteLinki": link_site, "Title": _aciklama }
           Uniq_Computer_of_vatan.append(mydict)
           computer_count += 1
           print(str(computer_count) + ". Vatan")
@@ -181,11 +183,12 @@ def _vatan():
 
 def _n11():
   computer_count = 0
-  for s_s in range(1, 50):
+  for s_s in range(1, 4):
     Link_one = get_soup(n11.format(s_s)).find_all("div", {"class":"pro"})
     for i in Link_one:
       link_site = i.a['href']
       Page_urun = get_soup(link_site)
+      _aciklama = Page_urun.find("div", {"class":"nameHolder"}).h1.text.strip(" \n\r")
       ozellikler = Page_urun.find_all("li", {"class":"unf-prop-list-item"})
       try:
         fiyat = Page_urun.find("div", {"class":"unf-p-summary-price"}).text.strip(" \n")
@@ -219,7 +222,7 @@ def _n11():
           elif (key.find("Ekran Boyutu") != -1):
             screen = key[14:].strip(" \n")  
       mydict = { "Marka": Marka, "ModelAdi": Model_adi, "Modelno": Model_no, "İşletimSistemi": OS, "İslemciTipi": cpuType, "İslemciNesli": cpuStatus,
-                    "Ram": ram, "DiskBoyutu": Disk, "DiskTürü": DiskType, "EkranBoyutu": screen, "Puanı": puan, "Fiyat": fiyat, "Siteİsmi": "n11", "SiteLinki": link_site }  
+                    "Ram": ram, "DiskBoyutu": Disk, "DiskTürü": DiskType, "EkranBoyutu": screen, "Puanı": puan, "Fiyat": fiyat, "Siteİsmi": "n11", "SiteLinki": link_site, "Title": _aciklama }  
       Uniq_Computer_of_n11.append(mydict)
       computer_count += 1
       print(str(computer_count) + ". N11")
@@ -228,8 +231,9 @@ def _n11():
 def _trendyol():
   computer_count = 0
   row = 1
-  for s_s in range(1, 50):
+  for s_s in range(1, 4):
     Link_one = get_soup(Trendyol.format(s_s))
+    _aciklama = Link_one.find("div", {"class":"pr-in-cn"}).span.text.strip(" \n\r")
     computers = Link_one.find_all("div", {"class":"p-card-wrppr with-campaign-view"})
     Links_points = Link_one.find_all("div", {"class":"product-down"})
     for s in Links_points:
@@ -281,7 +285,7 @@ def _trendyol():
           screen = key[13:].strip(" \n")
       Model_no = " ".join(Model).strip(" \n").upper()
       mydict = { "Marka": Marka, "ModelAdi": Model_adi, "Modelno": Model_no, "İşletimSistemi": OS, "İslemciTipi": cpuType, "İslemciNesli": cpuStatus,
-                "Ram": ram, "DiskBoyutu": Disk, "DiskTürü": DiskType, "EkranBoyutu": screen, "Puanı": str(full_points[row%23]), "Fiyat": fiyat, "Siteİsmi": "Trendyol", "SiteLinki": link_site }
+                "Ram": ram, "DiskBoyutu": Disk, "DiskTürü": DiskType, "EkranBoyutu": screen, "Puanı": str(full_points[row%23]), "Fiyat": fiyat, "Siteİsmi": "Trendyol", "SiteLinki": link_site, "Title": _aciklama }
       Uniq_Computer_of_trendyol.append(mydict)
       computer_count += 1
       print(str(computer_count) + ". Trendyol")
@@ -297,11 +301,12 @@ def _evkur():
     Disk = "null"
     DiskType = "null"
     screen = "null"
-    for s_s in range(1, 3):
+    for s_s in range(1, 4):
       main_page = get_soup(evkur.format(s_s)).find("div", {"class":"products"}).find_all("div", {"class":"product-mobile-wrapper"})
       for s in main_page:
         link_site = evkur_site + s.a['href']
         computer = get_soup(link_site)
+        _aciklama = computer.find("div", {"class":"product-info"}).h1.text.strip(" \n\r")
         ozellikler = computer.find("table", {"class":"product-detail-specifications"}).find_all("tr")
         puan = computer.find("div", {"class":"stars"})['data-rating']
         fiyat_baslik = computer.find("h2", {"class":"price-option"}).text.strip(" \n\r")
@@ -340,7 +345,7 @@ def _evkur():
           elif (key.find("Ekran Boyutu") != -1):
                 screen = value.strip(" \n\r")  
         mydict = { "Marka": Marka, "ModelAdi": Model_adi, "Modelno": Model_no, "İşletimSistemi": OS, "İslemciTipi": cpuType, "İslemciNesli": cpuStatus,
-            "Ram": ram, "DiskBoyutu": Disk, "DiskTürü": DiskType, "EkranBoyutu": screen, "Puanı": puan, "Fiyat": fiyat, "Siteİsmi": "evkur", "SiteLinki": link_site }
+            "Ram": ram, "DiskBoyutu": Disk, "DiskTürü": DiskType, "EkranBoyutu": screen, "Puanı": puan, "Fiyat": fiyat, "Siteİsmi": "evkur", "SiteLinki": link_site, "Title": _aciklama }
         Uniq_Computer_of_evkur.append(mydict)
         computer_count += 1
         print(str(computer_count) + ". Evkur")
@@ -355,12 +360,13 @@ def _ciceksepeti():
     Disk = "null"
     DiskType = "null"
     screen = "null"
-    for s_s in range(1, 50):
+    for s_s in range(1, 4):
         page = get_soup(ciceksepeti.format(s_s)).find("div", {"class":"products products--category js-ajax-category-products"})
         pages = page.find_all("div",{"class":"products__item js-category-item-hover js-product-item-for-countdown js-product-item"})
         for x in pages[:30]:
             link_site = C + x.a['href']
             products = get_soup(link_site)
+            _aciklama = products.find("div", {"class":"product__info-wrapper--left"}).find("span", {"class":"js-product-title js-ellipsize-text"}).text
             try:
               Title = products.find("div", {"class":"product__info-wrapper--left"}).text.strip(" \n\r").split(" ")
             except:
@@ -388,7 +394,7 @@ def _ciceksepeti():
                 elif (key == "Ekran Boyutu"):
                     screen = value
             mydict = { "Marka": Marka, "ModelAdi": "Belirtilmemiş", "Modelno": Model_no, "İşletimSistemi": OS, "İslemciTipi": cpuType, "İslemciNesli": cpuStatus,
-            "Ram": ram, "DiskBoyutu": Disk, "DiskTürü": "SSD", "EkranBoyutu": screen, "Puanı": "0.0", "Fiyat": fiyat, "Siteİsmi": "ciceksepeti", "SiteLinki": link_site }
+            "Ram": ram, "DiskBoyutu": Disk, "DiskTürü": "SSD", "EkranBoyutu": screen, "Puanı": "0.0", "Fiyat": fiyat, "Siteİsmi": "ciceksepeti", "SiteLinki": link_site, "Title": _aciklama }
             Uniq_Computer_of_ciceksepeti.append(mydict)
             computer_count += 1
             print(str(computer_count) + ". Ciceksepeti")
@@ -470,16 +476,19 @@ def Price_list_update(a):
               Fiyat = a.get("Fiyat" + str(j))
               Siteİsmi = a.get("Siteİsmi" + str(j))
               SiteLinki = a.get("SiteLinki" + str(j))
+              Title = a.get("Title" + str(j))
               
               a.update({"Puanı" + str(j): a.get("Puanı" + str(i))})
               a.update({"Fiyat" + str(j): a.get("Fiyat" + str(i))})
               a.update({"Siteİsmi" + str(j): a.get("Siteİsmi" + str(i))})
               a.update({"SiteLinki" + str(j): a.get("SiteLinki" + str(i))})
+              a.update({"Title" + str(j): a.get("Title" + str(i))})
               
               a.update({"Puanı" + str(i): Puanı})
               a.update({"Fiyat" + str(i): Fiyat})
               a.update({"Siteİsmi" + str(i): Siteİsmi})
               a.update({"SiteLinki" + str(i): SiteLinki})
+              a.update({"Title" + str(j): a.get("Title" + str(i))})
     return (a)
 
 #------------------SEND MATCHİNG DATA TO MONGODB-------------------
@@ -498,15 +507,18 @@ def Global_success_data_to_MongoDB():
                     a.pop("Fiyat")
                     a.pop("Siteİsmi")
                     a.pop("SiteLinki")
+                    a.pop("Title")
                 a.update({"Puanı" + str(k):j.get("Puanı")})
                 a.update({"Fiyat" + str(k):str(my_atoi(j.get("Fiyat")))})
                 a.update({"Siteİsmi" + str(k):j.get("Siteİsmi")})
                 a.update({"SiteLinki" + str(k):j.get("SiteLinki")})
+                a.update({"Title" + str(k):j.get("Title")})
         for j in range(k + 1, 6):
             a.update({"Puanı" + str(j):"NULL"})
             a.update({"Fiyat" + str(j):"NULL"})
             a.update({"Siteİsmi" + str(j):"NULL"})
             a.update({"SiteLinki" + str(j):"NULL"})
+            a.update({"Title" + str(j):"NULL"})
         if (k >= 2):
             if a.get("Modelno") not in duplicate_control:
               duplicate_control.append(a.get("Modelno"))
