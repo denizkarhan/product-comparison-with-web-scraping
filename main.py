@@ -233,7 +233,6 @@ def _trendyol():
   row = 1
   for s_s in range(1, 4):
     Link_one = get_soup(Trendyol.format(s_s))
-    _aciklama = Link_one.find("div", {"class":"pr-in-cn"}).span.text.strip(" \n\r")
     computers = Link_one.find_all("div", {"class":"p-card-wrppr with-campaign-view"})
     Links_points = Link_one.find_all("div", {"class":"product-down"})
     for s in Links_points:
@@ -251,6 +250,7 @@ def _trendyol():
       row += 1
       link_site = T + i.a['href']
       Page_urun = get_soup(link_site)
+      _aciklama = Page_urun.find("div", {"class":"pr-in-cn"}).span.text.strip(" \n\r")
       try:
         Marka = Page_urun.find("div", {"class":"pr-in-cn"}).h1.a.text.strip(" \n")
       except:
