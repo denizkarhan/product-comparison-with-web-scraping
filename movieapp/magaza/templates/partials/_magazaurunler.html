@@ -1,0 +1,20 @@
+{% load static %}
+
+<div class="g-4">
+  <div class="card text-center" style="width: 20rem;">
+    <img src="{{ notebook.İmageLink }}" alt="" style="width:200px; " class="rounded mx-auto d-block">
+    <div class="card-body">
+      <h6 class="card-title"> {{ notebook.Marka }} {{ notebook.ModelAdi}} {{ notebook.Modelno }} 
+        {{ notebook.İslemciTipi }} {{ notebook.İslemciNesli }} {{ notebook.Ram }} Ram
+        {{ notebook.DiskBoyutu }} {{ notebook.DiskTürü }} {{ notebook.EkranBoyutu }} Laptop</h6>
+      <p class="card-text"></p>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+         <h5> {{ notebook.Fiyat1 }} TL </h5>
+        </li>
+      </ul>
+      <a href="{% url 'details1' notebook.id %}" class="btn btn-warning" style="font-size: 85%">Detayları Gör</a>
+      <h1>{{ film.Fiyat }}</h1>
+    </div>
+  </div>
+</div>
