@@ -12,7 +12,7 @@
     {% include 'partials/_navbar.html' %}
       <div class ="container mt-3 px-3">
         <div class="row g-5">
-            <div class="col-3 border g-5">
+            <div class="col-3 g-5">
                 <div class="list-group">
                   <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
                     Laptoplar
@@ -30,8 +30,7 @@
                   </div>
             </div>
             <div class="col-9 g-5 border border-primary">
-              <div class = row>
-                
+              <div class = row>  
                   {% for notebook in notebooklar %}
                       <div class="col-4 g-3">
                          {% include 'partials/_urunler.html' %}

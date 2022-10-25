@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Category, DataSetDeneme, Data, Data2, Data3
+from .models import Category, DataSetDeneme, Data, Data2, Data3, Data
 
 # Create your views here.
 
