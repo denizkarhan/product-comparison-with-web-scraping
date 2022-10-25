@@ -4,10 +4,12 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from xlwt import Workbook
 
+#------------------CONNECT MONGODB-------------------
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = myclient["admin"]
-mycol = mydb["deneme"]
+mycol = mydb["Dataset"]
 
+#------------------PAGE LINKS-------------------
 Trendyol = "https://www.trendyol.com/laptop-x-c103108?pi={0}"
 T = "https://www.trendyol.com"
 vatan = "https://www.vatanbilgisayar.com/notebook/?page={0}"
@@ -20,6 +22,7 @@ evkur_site = "https://www.evkur.com.tr"
 ciceksepeti = "https://www.ciceksepeti.com/dizustu-bilgisayar-laptop?qt=diz%C3%BCst%C3%BC%20bilgisayar%20(laptop)&qcat=kategori-diz%C3%BCst%C3%BC%20bilgisayar%20(laptop)&suggest=1%7Claptop&page={0}"
 C = "https://www.ciceksepeti.com"
 
+#------------------DEFAULT VALUE-------------------
 OS = "null"
 cpuType = "null"
 cpuStatus = "null"
@@ -29,24 +32,33 @@ DiskType = "null"
 screen = "null"
 row = 1
 computer_count = 0
-
 Ozellik_adi2 = []
 Ozellik_aciklamasi2 = []
 Link_two = []
 full_points = []
+
+#------------------FIRST COMPUTERS DATA-------------------
 Uniq_Computer_of_n11 = []
 Uniq_Computer_of_evkur = []
 Uniq_Computer_of_vatan = []
 Uniq_Computer_of_teknosa = []
 Uniq_Computer_of_trendyol = []
 Uniq_Computer_of_ciceksepeti = []
+
+#------------------FULL COMPUTER DATA-------------------
 Global_Computer_Data = []
+
+#------------------CLEAN DATA-------------------
 End_computer_data = []
+
+#------------------LINKS OF COMPUTER IMAGE-------------------
 image_computer_links = []
 
+#------------------ENTER LINK AND CONVERT TO HTML-------------------
 def get_soup(Url):
     return BeautifulSoup(requests.get(Url).text, 'html.parser')
 
+#------------------PRICE CONVERTER-------------------
 def my_atoi(str):
     resultant = 0
     for i in range(len(str)):
@@ -56,9 +68,10 @@ def my_atoi(str):
           resultant = resultant * 10 + (ord(str[i]) - ord('0'))
     return (resultant)
 
+#------------------TEKNOSA DATA-------------------
 def _teknosa():
   computer_count = 0
-  for s_s in range(1, 3):
+  for s_s in range(1, 4):
     Link_one = get_soup(teknosa.format(s_s))
     x = Link_one.find_all("div",{"id":"product-item"})
     for s in x:
@@ -113,9 +126,10 @@ def _teknosa():
       print(str(computer_count) + ". Teknosa")
     print(str(s_s) + ". Sayfa verileri alındı (Teknosa) ✏️")
 
+#------------------VATAN COMPUTER DATA-------------------
 def _vatan():
     computer_count = 0
-    for s_s in range(1, 6): 
+    for s_s in range(1, 4): 
       page = get_soup(vatan.format(s_s)).find_all("div", {"class":"product-list product-list--list-page"})
       for i in page:
           link_site = V + i.a['href']
@@ -181,13 +195,15 @@ def _vatan():
           print(str(computer_count) + ". Vatan")
       print(str(s_s) + ". Sayfa verileri alındı (Vatan) ✏️")
 
+#------------------N11 DATA-------------------
 def _n11():
   computer_count = 0
-  for s_s in range(1, 6):
+  for s_s in range(1, 4):
     Link_one = get_soup(n11.format(s_s)).find_all("div", {"class":"pro"})
     for i in Link_one:
       link_site = i.a['href']
       Page_urun = get_soup(link_site)
+      _aciklama = Page_urun.find("div", {"class":"nameHolder"}).h1.text.strip(" \n\r")
       ozellikler = Page_urun.find_all("li", {"class":"unf-prop-list-item"})
       try:
         fiyat = Page_urun.find("div", {"class":"unf-p-summary-price"}).text.strip(" \n")
@@ -199,7 +215,6 @@ def _n11():
         Title = "null null null null null"
       Marka = Title[0].strip(" \n")
       Model_adi = Title[3].strip(" \n")
-      _aciklama = " ".join(Title)
       for i in ozellikler:
           key = i.text.strip(" \n")
           if (i.find("p", {"class":"unf-prop-list-title"}).text.find("Model") != -1 and len(i.find("p", {"class":"unf-prop-list-title"}).text) <= 6):
@@ -228,10 +243,11 @@ def _n11():
       print(str(computer_count) + ". N11")
     print(str(s_s) + ". Sayfa verileri alındı (N11) ✏️")
 
+#------------------TRENDYOL DATA-------------------
 def _trendyol():
   computer_count = 0
   row = 1
-  for s_s in range(1, 6):
+  for s_s in range(1, 4):
     Link_one = get_soup(Trendyol.format(s_s))
     computers = Link_one.find_all("div", {"class":"p-card-wrppr with-campaign-view"})
     Links_points = Link_one.find_all("div", {"class":"product-down"})
@@ -265,10 +281,7 @@ def _trendyol():
           ozellikler = ["NULL", "NULL","NULL","NULL"]
       flag = 1
       for i in ozellikler:
-        try:
-          key = i.text.strip(" \n")
-        except:
-          key = "NULL"
+        key = i.text.strip(" \n")
         if (key.find("İşletim Sistemi") != -1):
           OS = key[16:].strip(" \n")
         elif (key.find("İşlemci Tipi") != -1):
@@ -294,6 +307,7 @@ def _trendyol():
       print(str(computer_count) + ". Trendyol")
     print(str(s_s) + ". Sayfa verileri alındı (Trendyol) ✏️")
 
+#------------------EVKUR DATA-------------------
 def _evkur():
     computer_count = 0
     index_data = 0
@@ -304,12 +318,12 @@ def _evkur():
     Disk = "null"
     DiskType = "null"
     screen = "null"
-    for s_s in range(1, 3):
+    for s_s in range(1, 4):
       main_page = get_soup(evkur.format(s_s)).find("div", {"class":"products"}).find_all("div", {"class":"product-mobile-wrapper"})
       for s in main_page:
         link_site = evkur_site + s.a['href']
         computer = get_soup(link_site)
-        _aciklama = computer.find("div", {"class":"product-info"}).h1.span.text.strip(" \n\r")
+        _aciklama = computer.find("div", {"class":"product-info"}).h1.text.strip(" \n\r")
         ozellikler = computer.find("table", {"class":"product-detail-specifications"}).find_all("tr")
         puan = computer.find("div", {"class":"stars"})['data-rating']
         fiyat_baslik = computer.find("h2", {"class":"price-option"}).text.strip(" \n\r")
@@ -354,6 +368,7 @@ def _evkur():
         print(str(computer_count) + ". Evkur")
       print(str(s_s) + ". Sayfa verileri alındı (Evkur) ✏️")
 
+#------------------CICEKSEPETI DATA-------------------
 def _ciceksepeti():
     computer_count = 0
     OS = "null"
@@ -363,13 +378,13 @@ def _ciceksepeti():
     Disk = "null"
     DiskType = "null"
     screen = "null"
-    for s_s in range(1, 6):
+    for s_s in range(1, 4):
         page = get_soup(ciceksepeti.format(s_s)).find("div", {"class":"products products--category js-ajax-category-products"})
         pages = page.find_all("div",{"class":"products__item js-category-item-hover js-product-item-for-countdown js-product-item"})
         for x in pages[:30]:
             link_site = C + x.a['href']
             products = get_soup(link_site)
-            _aciklama = products.find("div", {"class":"product__info-wrapper--left"}).text.strip(" \n\r")
+            _aciklama = products.find("div", {"class":"product__info-wrapper--left"}).find("span", {"class":"js-product-title js-ellipsize-text"}).text
             try:
               Title = products.find("div", {"class":"product__info-wrapper--left"}).text.strip(" \n\r").split(" ")
             except:
@@ -474,6 +489,7 @@ def Global_data_create():
       Global_Computer_Data = Uniq_Computer_of_ciceksepeti + Uniq_Computer_of_evkur + Uniq_Computer_of_n11 + Uniq_Computer_of_vatan + Uniq_Computer_of_teknosa + Uniq_Computer_of_trendyol
       return Global_Computer_Data
 
+#------------------ORDER BY PRICE-------------------
 def Price_list_update(a):
     for i in range(1, 6):
       for j in range(i, 6):
@@ -495,10 +511,10 @@ def Price_list_update(a):
               a.update({"Fiyat" + str(i): Fiyat})
               a.update({"Siteİsmi" + str(i): Siteİsmi})
               a.update({"SiteLinki" + str(i): SiteLinki})
-              a.update({"Title" + str(i): Title})
+              a.update({"Title" + str(j): a.get("Title" + str(i))})
     return (a)
 
-#------------------SEND MATCHİNG DATA TO MONGODB-------------------
+#------------------SEND MATCHING DATA TO MONGODB-------------------
 def Global_success_data_to_MongoDB():
     mongo_id = 0
     duplicate_control = []
@@ -539,6 +555,7 @@ def Global_success_data_to_MongoDB():
               print(k * "🔥")
     return End_computer_data
 
+#------------------GET IMAGE LINK-------------------
 def get_image_link(i):
     link = "NULL"
     try:
@@ -622,7 +639,6 @@ print("Ciceksepeti verileri için Model Numarası aranıyor 🔍")
 Uniq_Computer_of_ciceksepeti = Site_Model_No_Find(Uniq_Computer_of_ciceksepeti)
 print("Trendyol verileri için Model Numarası aranıyor 🔍")
 Uniq_Computer_of_trendyol = Site_Model_No_Find(Uniq_Computer_of_trendyol)
-
 
 #------------------DUPLICATE CONTROL-------------------
 Uniq_Computer_of_ciceksepeti = Uniq_computer_Converter(Uniq_Computer_of_ciceksepeti)
