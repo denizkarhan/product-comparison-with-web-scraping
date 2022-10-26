@@ -8,25 +8,23 @@ myclient = pymongo.MongoClient("mongodb://localhost:27017/")
 mydb = myclient["admin"]
 mycol = mydb["magaza_magaza"]
 
+total_data = []
+my_data = []
+
 data = open("a.txt")
 
 a = data.read().split("\n")
 
-total_data = []
-my_data = []
-
 for i in a:
-    total_data.append(i)
-
-for i in range(len(total_data)):
     try:
-        my_data.append({"id": i + 1, "Marka":total_data[0 + i * 15].split(":")[1].strip(" "), "ModelAdi":total_data[1 + i * 15].split(":")[1].strip(" "), "Modelno":total_data[2 + i * 15].split(":")[1].strip(" "),
-                    "İşletimSistemi":total_data[3 + i * 15].split(":")[1].strip(" "), "İslemciTipi":total_data[4 + i * 15].split(":")[1].strip(" "), "İslemciNesli":total_data[5 + i * 15].split(":")[1].strip(" "),
-                    "Ram":total_data[6 + i * 15].split(":")[1].strip(" "), "DiskBoyutu":total_data[7 + i * 15].split(":")[1].strip(" "), "DiskTürü":total_data[8 + i * 15].split(":")[1].strip(" "), "EkranBoyutu":total_data[9 + i * 15].split(":")[1].strip(" "),
-                    "Puanı":total_data[10 + i * 15].split(":")[1].strip(" "), "Fiyat":total_data[11 + i * 15].split(":")[1].strip(" ").split(".")[0], "Siteİsmi":total_data[12 + i * 15].split(":")[1].strip(" "), "SiteLinki":total_data[13 + i * 15].split(":")[1].strip(" "), "Title":total_data[14 + i * 15].split(":")[1]})
-        x = mycol.insert_one(my_data[i])
-        print(my_data[i])
+        total_data.append(i[i.find(":") + 1:].strip(" \n\r"))
     except:
         pass
-    i += 15
 
+for i in range(int(len(total_data)/16)):
+    my_data.append({"id": i + 1, "Marka":total_data[0 + i * 16], "ModelAdi":total_data[1 + i * 16], "Modelno":total_data[2 + i * 16],
+                    "İşletimSistemi":total_data[3 + i * 16], "İslemciTipi":total_data[4 + i * 16], "İslemciNesli":total_data[5 + i * 16],
+                    "Ram":total_data[6 + i * 16], "DiskBoyutu":total_data[7 + i * 16], "DiskTürü":total_data[8 + i * 16], "EkranBoyutu":total_data[9 + i * 16],
+                    "Puanı":total_data[10 + i * 16], "Fiyat":total_data[11 + i * 16].split(".")[0], "Siteİsmi":total_data[12 + i * 16],
+                    "SiteLinki":total_data[13 + i * 16], "Title":total_data[14 + i * 16], "İmageLink": total_data[15 + i * 16]})
+    x = mycol.insert_one(my_data[i])

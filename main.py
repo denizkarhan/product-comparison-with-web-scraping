@@ -570,6 +570,7 @@ def Global_success_data_to_MongoDB():
               dosya.write("Siteİsmi: " + "Magazam" + "\n")
               dosya.write("SiteLinki: " + "http://127.0.0.1:8000/magazahome" + "\n")
               dosya.write("Title: " + str(id_added.get("Title1")) + "\n")
+              dosya.write("İmageLink: " + str(id_added.get("İmageLink")) + "\n")
     return End_computer_data
 
 #------------------GET IMAGE LINK-------------------
