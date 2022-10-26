@@ -49,13 +49,16 @@
                                           <img src="{% static 'img/vatan.jpeg' %}" class = "img-fluid" alt=""> 
                                         {% endif %}               
                                       </div>
-                                      <div class = "col-4 py-2 border border-red">açıklama</div>
+                                      <div class = "col-4 py-2 border border-red">{{laptoplar.Title1}}</div>
                                       <div class = "col-3 text-center">
                                           <div class ="row-6 border">
                                               {% if laptoplar.Puanı1 >= "5.0" %}
                                                   <img src="{% static 'img/5.jpeg' %}" class = "img-fluid rounded mx-auto d-block" style="width:90px;" alt="">
                                                   <p class="small text-center">({{laptoplar.Puanı1}})</p>
                                               {% elif laptoplar.Puanı1 >= "5" %}
+                                                  <img src="{% static 'img/5.jpeg' %}" class = "img-fluid rounded mx-auto d-block" style="width:90px;" alt="">
+                                                  <p class="small text-center">({{laptoplar.Puanı1}})</p>
+                                              {% elif laptoplar.Puanı1 == "5" %}
                                                   <img src="{% static 'img/5.jpeg' %}" class = "img-fluid rounded mx-auto d-block" style="width:90px;" alt="">
                                                   <p class="small text-center">({{laptoplar.Puanı1}})</p>
                                               {% elif laptoplar.Puanı1 >= "4.5" %}
@@ -126,12 +129,15 @@
                                         <img src="{% static 'img/vatan.jpeg' %}" class = "img-fluid" alt=""> 
                                       {% endif %}               
                                     </div>
-                                    <div class = "col-4 py-2 border border-red">açıklama</div>
+                                    <div class = "col-4 py-2 border border-red">{{laptoplar.Title2}}</div>
                                     <div class = "col-3 text-center">
                                         <div class ="row-3 border">
                                             {% if laptoplar.Puanı2 == "5.0" %}
                                                 <img src="{% static 'img/5.jpeg' %}" class = "img-fluid rounded mx-auto d-block" style="width:90px;" alt="">
                                                 <p class="small text-center">({{laptoplar.Puanı2}})</p>
+                                            {% elif laptoplar.Puanı2 >= "5" %}
+                                                  <img src="{% static 'img/5.jpeg' %}" class = "img-fluid rounded mx-auto d-block" style="width:90px;" alt="">
+                                                  <p class="small text-center">({{laptoplar.Puanı2}})</p>
                                             {% elif laptoplar.Puanı2 >= "4.5" %}
                                                 <img src="{% static 'img/4.5.jpeg' %}" class = "img-fluid rounded mx-auto d-block" style="width:90px;" alt="">
                                                 <p class="small text-center">({{laptoplar.Puanı2}})</p>
@@ -200,13 +206,16 @@
                                           <img src="{% static 'img/vatan.jpeg' %}" class = "img-fluid" alt=""> 
                                         {% endif %}               
                                       </div>
-                                      <div class = "col-4 py-2 border border-red">açıklama</div>
+                                      <div class = "col-4 py-2 border border-red">{{laptoplar.Title3}}</div>
                                       <div class = "col-3 text-center">
                                           <div class ="row-3 border">
                                               {% if laptoplar.Puanı3 == "5.0" %}
                                                   <div class="container border">
                                                   <img src="{% static 'img/5.jpeg' %}"  class = "img-fluid rounded mx-auto d-block" style="width:90px;" alt="">
                                                   <p class="text-center">({{laptoplar.Puanı3}})</p></div>
+                                              {% elif laptoplar.Puanı3 >= "5" %}
+                                                  <img src="{% static 'img/5.jpeg' %}" class = "img-fluid rounded mx-auto d-block" style="width:90px;" alt="">
+                                                  <p class="small text-center">({{laptoplar.Puanı3}})</p>
                                               {% elif laptoplar.Puanı3 >= "4.5" %}                    
                                                   <img src="{% static 'img/4.5.jpeg' %}" class = "img-fluid rounded mx-auto d-block" style="width:90px;" alt="">
                                                   <p class="small text-center">({{laptoplar.Puanı3}})</p> 
@@ -277,11 +286,14 @@
                                           <img src="{% static 'img/vatan.jpeg' %}" class = "img-fluid" alt=""> 
                                         {% endif %}               
                                       </div>
-                                      <div class = "col-4 py-2 border ">açıklama</div>
+                                      <div class = "col-4 py-2 border ">{{laptoplar.Title4}}</div>
                                       <div class = "col-3 text-center">
                                           <div class ="row-3 border">
                                               {% if laptoplar.Puanı4 == "5.0" %}
                                                   <img src="{% static 'img/5.jpeg' %}"  class = "img-fluid rounded mx-auto d-block" style="width:90px;" alt="">
+                                                  <p class="small text-center">({{laptoplar.Puanı4}})</p>
+                                              {% elif laptoplar.Puanı4 >= "5" %}
+                                                  <img src="{% static 'img/5.jpeg' %}" class = "img-fluid rounded mx-auto d-block" style="width:90px;" alt="">
                                                   <p class="small text-center">({{laptoplar.Puanı4}})</p>
                                               {% elif laptoplar.Puanı4 >= "4.5" %}
                                                   <img src="{% static 'img/4.5.jpeg' %}" class = "img-fluid rounded mx-auto d-block" style="width:90px;" alt="">
@@ -353,12 +365,15 @@
                                           <img src="{% static 'img/vatan.jpeg' %}" class = "img-fluid" alt=""> 
                                         {% endif %}               
                                       </div>
-                                      <div class = "col-4 py-2 border">açıklama</div>
+                                      <div class = "col-4 py-2 border">{{laptoplar.Title5}}</div>
                                       <div class = "col-3 text-center">
                                           <div class ="row-3 border">
                                               {% if laptoplar.Puanı5 == "5.0" %}
                                                   <img src="{% static 'img/5.jpeg' %}" class = "img-fluid rounded mx-auto d-block" style="width:90px;" alt="">
                                                   <p class="text-center">({{laptoplar.Puanı5}})</p>
+                                              {% elif laptoplar.Puanı5 >= "5" %}
+                                                  <img src="{% static 'img/5.jpeg' %}" class = "img-fluid rounded mx-auto d-block" style="width:90px;" alt="">
+                                                  <p class="small text-center">({{laptoplar.Puanı5}})</p>
                                               {% elif laptoplar.Puanı5 >= "4.5" %}
                                               <h6>{{laptoplar.Puanı5}}</h6>
                                                   <img src="{% static 'img/4.5.jpeg' %}" class = "img-fluid rounded mx-auto d-block" style="width:90px;" alt="">

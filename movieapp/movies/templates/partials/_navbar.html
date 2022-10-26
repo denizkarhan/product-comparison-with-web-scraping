@@ -21,8 +21,8 @@
         </ul>
         </ul>
         <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Arama.." aria-label="Arama">
-          <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Git</button>
+          <input type="text" placeholder="Arama.." aria-label="Arama" style="border: none; background: transparent; width:max-content" name="q" placeholder="Search" value = "{{ request.GET.q }}">
+          <input type="submit" value="Ara">
         </form>
       </div>
       </div> 
