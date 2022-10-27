@@ -36,53 +36,53 @@
                                 </h5>
                                 <div class = "row my-2">
                                   <div class="col-4 mt-1 mx-1 ">
-                                  {% if laptoplar.Puanı1 >= "5.0" %}
+                                  {% if laptoplar.Puanı >= "5.0" %}
                                   <img src="{% static 'img/5.jpeg' %}" class = "img-fluid " style="width:110px;" alt="">
                                   ({{laptoplar.Puanı1}})
-                              {% elif laptoplar.Puanı1 >= "5" %}
+                              {% elif laptoplar.Puanı >= "5" %}
                                   <img src="{% static 'img/5.jpeg' %}" class = "img-fluid " style="width:110px;" alt="">
-                                  ({{laptoplar.Puanı1}})
-                              {% elif laptoplar.Puanı1 >= "4.5" %}
+                                  ({{laptoplar.Puanı}})
+                              {% elif laptoplar.Puanı >= "4.5" %}
                                   <img src="{% static 'img/4.5.jpeg' %}" class = "img-fluid " style="width:110px;" alt="">
-                                  ({{laptoplar.Puanı1}})
-                              {% elif laptoplar.Puanı1 >= "4.0" %}
+                                  ({{laptoplar.Puanı}})
+                              {% elif laptoplar.Puanı >= "4.0" %}
                                   <img src="{% static 'img/4.jpeg' %}" class = "img-fluid " style="width:110px;" alt="">
-                                  ({{laptoplar.Puanı1}})
-                              {% elif laptoplar.Puanı1 >= "3.5" %}
+                                  ({{laptoplar.Puanı}})
+                              {% elif laptoplar.Puanı >= "3.5" %}
                                   <img src="{% static 'img/3.5.jpeg' %}" class = "img-fluid " style="width:110px;" alt="">
-                                  ({{laptoplar.Puanı1}})
-                              {% elif laptoplar.Puanı1 >= "3.0" %}
+                                  ({{laptoplar.Puanı}})
+                              {% elif laptoplar.Puanı >= "3.0" %}
                                   <img src="{% static 'img/3.jpeg' %}" class = "img-fluid " style="width:110px;" alt="">
-                                  ({{laptoplar.Puanı1}})
-                              {% elif laptoplar.Puanı1 >= "2.5" %}
+                                  ({{laptoplar.Puanı}})
+                              {% elif laptoplar.Puanı >= "2.5" %}
                                   <img src="{% static 'img/2.5.jpeg' %}" class = "img-fluid " style="width:110px;" alt="">
-                                  ({{laptoplar.Puanı1}}) 
-                              {% elif laptoplar.Puanı1 >= "2.0" %}
+                                  ({{laptoplar.Puanı}}) 
+                              {% elif laptoplar.Puanı >= "2.0" %}
                                   <img src="{% static 'img/2.jpeg' %}" class = "img-fluid " style="width:110px;" alt="">
-                                  ({{laptoplar.Puanı1}})
-                              {% elif laptoplar.Puanı1 >= "1.5" %}
+                                  ({{laptoplar.Puanı}})
+                              {% elif laptoplar.Puanı >= "1.5" %}
                                   <img src="{% static 'img/1.5.jpeg' %}" class = "img-fluid " style="width:110px;" alt="">
-                                  ({{laptoplar.Puanı1}})
-                              {% elif laptoplar.Puanı1 >= "1.0" %}
+                                  ({{laptoplar.Puanı}})
+                              {% elif laptoplar.Puanı >= "1.0" %}
                                   <img src="{% static 'img/1.jpeg' %}" class = "img-fluid " style="width:110px;" alt="">
-                                  ({{laptoplar.Puanı1}})
-                              {% elif laptoplar.Puanı1 >= "0.5" %}
+                                  ({{laptoplar.Puanı}})
+                              {% elif laptoplar.Puanı >= "0.5" %}
                                   <img src="{% static 'img/0.5.jpeg' %}" class = "img-fluid " style="width:110px;" alt="">
-                                  ({{laptoplar.Puanı1}})
-                              {% elif laptoplar.Puanı1 > "0.0" %}
+                                  ({{laptoplar.Puanı}})
+                              {% elif laptoplar.Puanı > "0.0" %}
                                   <img src="{% static 'img/0.jpeg' %}" class = "img-fluid " style="width:110px;" alt="">
-                                  ({{laptoplar.Puanı1}})
-                              {% elif laptoplar.Puanı1 == "0" %}  
+                                  ({{laptoplar.Puanı}})
+                              {% elif laptoplar.Puanı == "0" %}  
                                   <img src="{% static 'img/0.jpeg' %}" class = "img-fluid " style="width:110px;" alt="">
-                                  ({{laptoplar.Puanı1}})
-                              {% elif laptoplar.Puanı1 == "0.0" %}  
+                                  ({{laptoplar.Puanı}})
+                              {% elif laptoplar.Puanı == "0.0" %}  
                                   <img src="{% static 'img/0.jpeg' %}" class = "img-fluid " style="width:110px;" alt="">
-                                  ({{laptoplar.Puanı1}})                                                      
+                                  ({{laptoplar.Puanı}})                                                      
                               {% endif %}
                             </div>
                                     </div>
-                                    <div class="row my-2 mt-3 mx-1">{{laptoplar.Title1}}</div>
-                                    <h3>{{laptoplar.Fiyat1}} TL</h3>
+                                    <div class="row my-2 mt-3 mx-1">{{laptoplar.Title}}</div>
+                                    <h3>{{laptoplar.Fiyat}} TL</h3>
                                 </div>
                                 <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ürün Özellikleri</h3>
