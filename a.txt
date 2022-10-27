@@ -1,0 +1,448 @@
+Marka: MSI
+ModelAdi: GameBook
+Modelno: 11UD-428XTR
+İşletimSistemi: Windows 10 Home 
+İslemciTipi: Intel Core i7
+İslemciNesli: 3.Nesil 
+Ram: 16 GB
+DiskBoyutu: 512 GB
+DiskTürü: SSD
+EkranBoyutu: 15,6 inç
+Puanı: 0.0
+Fiyat: 37618.9
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: MSI GF63 THIN 11UD-428XTR i7-11800H 16GB 512GB SSD 4GB RTX3050Ti 15.6 144Hz Freedos
+İmageLink: https://cdn.evkur.com.tr/c/Product/thumbs/msi-nb-gf63-thin-11ud-428xtr-intel-core-i7-11800h-1_t5cyd7_500.jpg
+Marka: Asus
+ModelAdi: 4
+Modelno: X415FA-EK066
+İşletimSistemi: Windows 10 Home 
+İslemciTipi: Intel Core i3
+İslemciNesli: 11.Nesil
+Ram: 12 GB
+DiskBoyutu: 512 GB
+DiskTürü: SSD
+EkranBoyutu: 14 inç
+Puanı: 0.0
+Fiyat: 7918.9
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: ASUS i3-10110U 12GB 512 GB 14 FHD W10HOME X415FA-EK06623
+İmageLink: https://n11scdn.akamaized.net/a1/602_857/04/47/01/83/IMG-3135556360719892834.jpg
+Marka: ACER
+ModelAdi: AN517-41
+Modelno: NH.QAREY.001
+İşletimSistemi: Yok (Free Dos)
+İslemciTipi: AMD Ryzen 7
+İslemciNesli: 5.Nesil 
+Ram: 16 GB
+DiskBoyutu: 512 GB
+DiskTürü: SSD
+EkranBoyutu: 17,3 inç
+Puanı: 0.0
+Fiyat: 28378.9
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: ACER Nitro 5 AN517-41 R7 5800H 16GB 512GB SSD RTX3060 144Hz 17.3 FHD Freedos Notebook NH.QAREY.001
+İmageLink: https://n11scdn.akamaized.net/a1/602_857/07/48/20/49/IMG-6103030824605886694.jpg
+Marka: Asus
+ModelAdi: 3
+Modelno: D515DA-BR3169
+İşletimSistemi: Yok (Free Dos)
+İslemciTipi: AMD Ryzen 3
+İslemciNesli: 5.Nesil 
+Ram: 8 GB
+DiskBoyutu: 256 GB
+DiskTürü: SSD
+EkranBoyutu: 15,6 inç
+Puanı: 0.0
+Fiyat: 7367.8
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: Asus D515DA-BR3169 Amd Ryzen 3 3250U 8GB 256GB SSD 15.6” Freedos Taşınabilir Bilgisayar
+İmageLink: https://n11scdn.akamaized.net/a1/602_857/15/51/11/31/IMG-182855288340074949.png
+Marka: MSI
+ModelAdi: GameBook
+Modelno: 12UHS-041TR
+İşletimSistemi: Diğer
+İslemciTipi: Intel Core i9
+İslemciNesli: 10.Nesil
+Ram: 64 GB
+DiskBoyutu: Yok
+DiskTürü: SSD
+EkranBoyutu: 17,3 inç
+Puanı: 0.0
+Fiyat: 116191.9
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: MSI RAIDER GE77HX 12UHS-041TR Intel Core i9 12900HX 64GB 2TB SSD RTX3080Ti W11H 17.3" UHD 120Hz
+İmageLink: https://cdn.dsmcdn.com/mnresize/1200/1800/ty455/product/media/images/20220614/13/125537040/499906894/1/1_org_zoom.jpg
+Marka: Acer
+ModelAdi: Aspire 3
+Modelno: NX.HVTEY.00B
+İşletimSistemi: Yok (Free Dos)
+İslemciTipi: AMD Ryzen 5
+İslemciNesli: 8.Nesil 
+Ram: 8 GB
+DiskBoyutu: 256 GB
+DiskTürü: SSD
+EkranBoyutu: 15,6 inç
+Puanı: 0.0
+Fiyat: 8138.9
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: Acer Aspire 3 A315-23 AMD Ryzen 5 3500U 8GB 256GB SSD Linux 15.6" FHD NX.HVTEY.00B
+İmageLink: https://cdn.dsmcdn.com/mnresize/1200/1800/ty514/product/media/images/20220822/12/163802925/134492302/1/1_org_zoom.jpg
+Marka: Hp
+ModelAdi: 68N66EA
+Modelno: 68N66EA
+İşletimSistemi: Yok (Free Dos)
+İslemciTipi: AMD Ryzen 7
+İslemciNesli: 8.Nesil 
+Ram: 16 GB
+DiskBoyutu: Yok
+DiskTürü: SSD
+EkranBoyutu: 15,6 inç
+Puanı: 0.0
+Fiyat: 21558.9
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: Hp Pavilion Gaming Laptop 15-ec2052nt Amd Ryzen 7 5800H 16 GB 512 GB SSD Rtx 3050 144 Hz Freedos 15.6" FHD Taşınabilir Bilgisayar 68N66EA
+İmageLink: https://n11scdn.akamaized.net/a1/602_857/09/76/68/79/IMG-39194960103296666.jpg
+Marka: MSI
+ModelAdi: GameBook
+Modelno: 12UGS-039TR
+İşletimSistemi: Yok (Free Dos)
+İslemciTipi: Intel Core i7
+İslemciNesli: 8.Nesil 
+Ram: 32 GB
+DiskBoyutu: Yok
+DiskTürü: SSD
+EkranBoyutu: 17,3 inç
+Puanı: 0.0
+Fiyat: 85272.0
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: MSI NB RAIDER GE77HX 12UGS-039TR I7-12800HX 32GB DDR5 RTX3070TI GDDR6 8GB 2TB SSD 17.3 QHD 240Hz W11
+İmageLink: https://cdn.evkur.com.tr/c/Product/thumbs/msi-nb-raider-ge77hx-12ugs-039tr-i7-12800hx-32gb-ddr5-rtx3070ti-gddr6-8gb-2tb-ssd-173-qhd-240hz-w11-1_t7lnp5_500.jpg
+Marka: Hp
+ModelAdi: G8
+Modelno: 32M59EA
+İşletimSistemi: Yok (Free Dos)
+İslemciTipi: Intel Core i5
+İslemciNesli: 8.Nesil 
+Ram: 8 GB
+DiskBoyutu: 256 GB
+DiskTürü: SSD
+EkranBoyutu: 15 İnç - 15.9 İnç
+Puanı: 0.0
+Fiyat: 14678.4
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: Hp Probook 450 G8 Intel Core i5 1135G7 8 GB 256 GB SSD Free Dos 15.6" FHD 11.Nesil /32M59EA
+İmageLink: https://n11scdn.akamaized.net/a1/602_857/04/92/91/53/IMG-4306879869861410371.jpg
+Marka: MSI
+ModelAdi: GameBook
+Modelno: 11UC-617XTR
+İşletimSistemi: Diğer
+İslemciTipi: Intel Core i5
+İslemciNesli: 11.Nesil
+Ram: 8 GB
+DiskBoyutu: 512 GB
+DiskTürü: SSD
+EkranBoyutu: 15 İnç - 15.9 İnç
+Puanı: 0.0
+Fiyat: 25738.9
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: MSI GF63 THIN 11UC-617XTR i5-11400H 8GB 512GB SSD 4GB RTX3050 15.6 FHD 144Hz FreeDOS
+İmageLink: https://cdn.evkur.com.tr/c/Product/thumbs/msi-nb-gf63-thin-11uc-617xtr-i5-11400h-8gb-ddr4-rtx3050-gddr6-4gb-512gb-ssd-156-fhd-dos-1_ym06fd_500.jpg
+Marka: MSI
+ModelAdi: GameBook
+Modelno: 11UC-058XTR
+İşletimSistemi: Windows 10 Home
+İslemciTipi: INTEL CORE I7
+İslemciNesli: 11800H
+Ram: 16 GB
+DiskBoyutu: 1 TB
+DiskTürü: SSD
+EkranBoyutu: 17,3"
+Puanı: 0.0
+Fiyat: 27938.9
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: MSI NB KATANA GF76 11UC-058XTR I7-11800H 16GB DDR4 RTX3050 GDDR6 4GB 1Tb SSD 17.3 FHD 144Hz DOS
+İmageLink: https://cdn.dsmcdn.com/mnresize/1200/1800/ty325/product/media/images/20220208/14/46932494/192914914/1/1_org_zoom.jpg
+Marka: Asus
+ModelAdi: NoteBook
+Modelno: D509BA-EJ077T
+İşletimSistemi: Windows 10 Home
+İslemciTipi: AMD A9
+İslemciNesli: 9425
+Ram: 4 GB
+DiskBoyutu: 128 GB
+DiskTürü: SSD
+EkranBoyutu: 15,6"
+Puanı: 0.0
+Fiyat: 5910.3
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: Asus D509BA-EJ077T AMD A9 9425-3.1Ghz İşlemci 4Gb Ram 128Gb Ssd 15.6" Windows 10 Home İşletim Sistemli Gri Dizüstü Bilgisayar
+İmageLink: https://cdn.dsmcdn.com/mnresize/1200/1800/ty453/product/media/images/20220614/18/125683214/500069243/1/1_org_zoom.jpg
+Marka: MSI
+ModelAdi: GameBook
+Modelno: 12UC-258XTR
+İşletimSistemi: FreeDos
+İslemciTipi: INTEL CORE I5
+İslemciNesli: 12500H
+Ram: 8 GB
+DiskBoyutu: 512 GB
+DiskTürü: SSD
+EkranBoyutu: 15,6"
+Puanı: 0.0
+Fiyat: 21998.9
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: MSI NB KATANA GF66 12UC-258XTR I5-12500H 8GB DDR4 RTX3050 GDDR6 4GB 512GB SSD 15.6 FHD 144Hz DOS
+İmageLink: https://cdn.dsmcdn.com/mnresize/1200/1800/ty358/product/media/images/20220311/19/68141154/412986656/2/2_org_zoom.jpg
+Marka: MSI
+ModelAdi: GameBook
+Modelno: 11UE-470TR
+İşletimSistemi: FreeDos
+İslemciTipi: INTEL CORE I7
+İslemciNesli: 11800H
+Ram: 16 GB
+DiskBoyutu: 1 TB
+DiskTürü: SSD
+EkranBoyutu: 17,3"
+Puanı: 0.0
+Fiyat: 38828.9
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: MSI NB KATANA GF76 11UE-470TR I7-11800H 16GB DDR4 RTX3060 GDDR6 6GB 1TB SSD 17.3 FHD 144Hz W11
+İmageLink: https://n11scdn.akamaized.net/a1/602_857/11/25/33/24/IMG-6697618565036087806.png
+Marka: Acer
+ModelAdi: AN517
+Modelno: NH.QFCEY.002
+İşletimSistemi: Linux
+İslemciTipi: Intel Core i7
+İslemciNesli: Intel i7-11800H
+Ram: 16 GB
+DiskBoyutu: 512 GB
+DiskTürü: SSD
+EkranBoyutu: 17.3"
+Puanı: 0.0
+Fiyat: 32298.2
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: Acer Nitro 5 AN517 NH.QFCEY.002 i7-11800H 16 GB 512 GB RTX3070 17.3" Linux Dizüstü Bilgisayar
+İmageLink: https://cdn.dsmcdn.com/mnresize/1200/1800/ty505/product/media/images/20220812/17/158603605/542516981/1/1_org_zoom.jpg
+Marka: Asus
+ModelAdi: F15
+Modelno: FX506LHB-HN348
+İşletimSistemi: Freedos
+İslemciTipi: Intel Core i5
+İslemciNesli: Intel i5-10300H
+Ram: 8 GB
+DiskBoyutu: 512 GB
+DiskTürü: SSD
+EkranBoyutu: 15.6"
+Puanı: 0.0
+Fiyat: 16806.9
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: Asus Tuf Gaming F15 FX506LHB-HN348 i5-10300H 8 GB 512 GB SSD GTX1650 15.6" 144 Hz Dos Dizüstü Bilgisayar
+İmageLink: https://cdn.dsmcdn.com/mnresize/1200/1800/ty532/product/media/images/20220915/11/175446404/548427705/1/1_org_zoom.jpg
+Marka: Acer
+ModelAdi: AN515-45
+Modelno: NH.QBAEY.005
+İşletimSistemi: Freedos
+İslemciTipi: Amd Ryzen 5
+İslemciNesli: Amd Ryzen 5-5600H
+Ram: 8 GB
+DiskBoyutu: 512 GB
+DiskTürü: SSD
+EkranBoyutu: 15.6"
+Puanı: 0.0
+Fiyat: 18478.9
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: Acer Nitro 5 AN515-45 NH.QBAEY.005 R5-5600H 8 GB 512 GB SSD RTX3050 15.6" Dos Dizüstü Bilgisayar
+İmageLink: https://n11scdn.akamaized.net/a1/602_857/13/97/32/33/IMG-2153638755436096376.png
+Marka: Asus
+ModelAdi: A15
+Modelno: FA506ICB-HN105
+İşletimSistemi: Freedos
+İslemciTipi: Amd Ryzen 5
+İslemciNesli: Amd Ryzen 5-4600H
+Ram: 8 GB
+DiskBoyutu: 512 GB
+DiskTürü: SSD
+EkranBoyutu: 15.6"
+Puanı: 0.0
+Fiyat: 17928.9
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: Asus Tuf Gaming A15 FA506ICB-HN105 R5-4600H 8 GB 512 GB SSD 15.6"Dos Dizüstü Bilgisayar
+İmageLink: https://cdn.dsmcdn.com/mnresize/1200/1800/ty545/product/media/images/20220930/17/181873574/583839896/1/1_org_zoom.jpg
+Marka: HP
+ModelAdi: 68N71EA
+Modelno: 68N71EA
+İşletimSistemi: Freedos
+İslemciTipi: Amd Ryzen 5
+İslemciNesli: Amd Ryzen 5-5600H
+Ram: 8 GB
+DiskBoyutu: 512 GB
+DiskTürü: SSD
+EkranBoyutu: 15.6"
+Puanı: 0.0
+Fiyat: 19358.9
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: HP Pavilion Gaming 68N71EA R5-5600H 8 GB 512 GB SSD RTX3050Ti 144Hz 15.6" Dos FHD Dizüstü Bilgisayar
+İmageLink: https://n11scdn.akamaized.net/a1/602_857/02/79/77/64/IMG-4814472966510378773.jpg
+Marka: Asus
+ModelAdi: A15
+Modelno: FX506LHB-HN347
+İşletimSistemi: Freedos
+İslemciTipi: Intel Core i5
+İslemciNesli: Intel i5-10300H
+Ram: 8 GB
+DiskBoyutu: 512 GB
+DiskTürü: SSD
+EkranBoyutu: 15.6"
+Puanı: 0.0
+Fiyat: 15398.9
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: Asus Tuf Gaming A15 FX506LHB-HN347 i5-10300H 8 GB 512 GB GTX1650 15.6" Dos Dizüstü Bilgisayar
+İmageLink: https://cdn.dsmcdn.com/mnresize/1200/1800/ty570/product/media/images/20221018/19/196779661/600048345/1/1_org_zoom.jpg
+Marka: Acer
+ModelAdi: Aspire 7
+Modelno: NH.QE5EY.004
+İşletimSistemi: Freedos
+İslemciTipi: Amd Ryzen 5
+İslemciNesli: Amd Ryzen 5-5500U
+Ram: 8 GB
+DiskBoyutu: 512 GB
+DiskTürü: SSD
+EkranBoyutu: 15.6"
+Puanı: 0.0
+Fiyat: 16498.9
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: Acer Gaming Aspire 7 A715-42G NH.QE5EY.004 R5-5500U 8 GB 512 GB SSD RTX3050 144 Hz 15.6" Free Dos FHD Dizüstü Bilgisayar
+İmageLink: https://cdn.vatanbilgisayar.com/Upload/PRODUCT/acer/thumb/135334-1_large.jpg
+Marka: Apple
+ModelAdi: Pro MKGR3TU/A
+Modelno: MKGP3TU/A
+İşletimSistemi: Macos
+İslemciTipi: Apple M1
+İslemciNesli: Apple M1
+Ram: 16 GB
+DiskBoyutu: 512 GB
+DiskTürü: SSD
+EkranBoyutu: 14"
+Puanı: 0.0
+Fiyat: 43052.9
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: Apple MacBook Pro MKGP3TU/A Apple M1 Pro 16 GB 512 GB SSD 14" MacOS Dizüstü Bilgisayar
+İmageLink: https://n11scdn.akamaized.net/a1/602_857/05/21/80/80/IMG-2617896821876258458.jpg
+Marka: Asus
+ModelAdi: N4020
+Modelno: X543MA-GQ1244
+İşletimSistemi: Freedos
+İslemciTipi: Intel Celeron
+İslemciNesli: Intel Celeron N4020
+Ram: 4 GB
+DiskBoyutu: 256 GB
+DiskTürü: SSD
+EkranBoyutu: 15.6"
+Puanı: 0.0
+Fiyat: 5443.9
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: Asus X543MA-GQ1244 Celeron N4020 4 GB 256 GB SSD 15.6" Free Dos Dizüstü Bilgisayar
+İmageLink: https://cdn.dsmcdn.com/mnresize/1200/1800/ty68/product/media/images/20210214/22/62423560/140339657/1/1_org_zoom.jpg
+Marka: Lenovo
+ModelAdi: Ideapad 1
+Modelno: 81VU00FQTX
+İşletimSistemi: Windows 11 Home 64
+İslemciTipi: Celeron
+İslemciNesli: Belirtilmemiş
+Ram: 4 GB
+DiskBoyutu: 128 GB
+DiskTürü: SSD
+EkranBoyutu: 14 inch
+Puanı: 0.0
+Fiyat: 5498.9
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: Lenovo Ideapad 1 Celeron N4020-4Gb-128Gb Ssd-14inc-W11
+İmageLink: https://cdn.vatanbilgisayar.com/Upload/PRODUCT/lenovo/thumb/132731-1-1_large.jpg
+Marka: Lenovo
+ModelAdi: Ideapad 3
+Modelno: 82H80250TX
+İşletimSistemi: Windows 11 Home 64
+İslemciTipi: Core i5
+İslemciNesli: 1135G7
+Ram: 8 GB
+DiskBoyutu: 512 GB
+DiskTürü: SSD
+EkranBoyutu: 15.6 inch
+Puanı: 0.0
+Fiyat: 13197.8
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: Lenovo Ideapad 3 11.Nesil Core i5 1135G7-8Gb-512Gb Ssd-15.6inc-W11
+İmageLink: https://cdn.dsmcdn.com/mnresize/1200/1800/ty464/product/media/images/20220629/12/131870187/509052562/2/2_org_zoom.jpg
+Marka: MacBook
+ModelAdi: Air MLY33TU/A
+Modelno: MLY33TU/A
+İşletimSistemi: macOS Monterey
+İslemciTipi: M2
+İslemciNesli: Belirtilmemiş
+Ram: 8 GB
+DiskBoyutu: 256 GB
+DiskTürü: SSD
+EkranBoyutu: 13.6 inch
+Puanı: 0.0
+Fiyat: 25958.9
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: MacBook Air MLY33TU/A M2 8Gb-256Gb Ssd-Liquid Retina-13.6inc-Gece Yarısı
+İmageLink: https://cdn.dsmcdn.com/mnresize/1200/1800/ty541/product/media/images/20220928/18/180895981/581885669/1/1_org_zoom.jpg
+Marka: Acer
+ModelAdi: Extensa 15
+Modelno: NX.EGHEY.001
+İşletimSistemi: FreeDOS
+İslemciTipi: Core i5
+İslemciNesli: 1135G7
+Ram: 8 GB
+DiskBoyutu: 512 GB
+DiskTürü: SSD
+EkranBoyutu: 15.6 inch
+Puanı: 0.0
+Fiyat: 12336.5
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: Acer Extensa 15 11.Nesil Core i5 1135G7-8Gb-512Gb Ssd-15.6inc-Mx350 2Gb-Freedos
+İmageLink: https://cdn.dsmcdn.com/mnresize/1200/1800/ty436/product/media/images/20220521/14/114510492/485297355/1/1_org_zoom.jpg
+Marka: MacBook
+ModelAdi: Air MLY13TU/A
+Modelno: MLY13TU/A
+İşletimSistemi: macOS Monterey
+İslemciTipi: M2
+İslemciNesli: Paylaşılmıyor
+Ram: 8 GB
+DiskBoyutu: 256 GB
+DiskTürü: SSD
+EkranBoyutu: 13.6 inch
+Puanı: 0.0
+Fiyat: 26398.9
+Siteİsmi: Magazam
+SiteLinki: http://127.0.0.1:8000/magazahome
+Title: MacBook Air MLY13TU/A M2 8Gb-256Gb Ssd-Liquid Retina-13.6inc-Yıldız ışığı
+İmageLink: https://cdn.dsmcdn.com/mnresize/1200/1800/ty562/product/media/images/20221014/12/193315469/533072854/1/1_org_zoom.jpg
