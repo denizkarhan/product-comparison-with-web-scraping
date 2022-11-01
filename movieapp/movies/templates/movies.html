@@ -1,0 +1,225 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  </head>
+  <body style="background-image: url('https://images.unsplash.com/photo-1491895200222-0fc4a4c35e18?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1074&q=80');" >
+    {% include 'partials/_navbar.html' %}
+      <div class ="container mt-3 px-3">
+        <div class="row g-5">
+            <div class="col-3 g-5">
+                <div class="list-group">
+                  <button type="button" class="list-group-item list-group-item-action active" aria-current="true">
+                    Laptoplar
+                  </button>
+                  <button type="button" class="list-group-item list-group-item-action">Asus</button>
+                  <button type="button" class="list-group-item list-group-item-action">Acer</button>
+                  <button type="button" class="list-group-item list-group-item-action">Apple</button>
+                  <button type="button" class="list-group-item list-group-item-action">Casper</button>
+                  <button type="button" class="list-group-item list-group-item-action">Dell</button>
+                  <button type="button" class="list-group-item list-group-item-action">Hometech</button>
+                  <button type="button" class="list-group-item list-group-item-action">HP</button>
+                  <button type="button" class="list-group-item list-group-item-action">Lenovo</button>
+                  <button type="button" class="list-group-item list-group-item-action">Monster</button>
+                  <button type="button" class="list-group-item list-group-item-action">MSI</button>           
+                </div> 
+                <div></div>
+                <form method="post">
+                  {% csrf_token %}
+                <div class="col my-3 bg-white">
+                  <div class="col">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="ucuz" id="ucuz" name="fruits">
+                      <label class="form-check-label" for="">Fiyata Göre Artan</label>
+                    </div></div>
+                    <div class="col">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="pahalı" id="pahalı" name="fruits">
+                      <label class="form-check-label" for="">Fiyata Göre Azalan</label>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="puanlı" id="puanlı" name="fruits">
+                      <label class="form-check-label" for="">Puanı En Yüksek</label>
+                    </div></div>
+                    <div class="col">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="puansız" id="puansız" name="fruits">
+                      <label class="form-check-label" for="">Puanı En Düşük</label>
+                    </div>
+                  </div>
+                  <h4 class="text-center">Marka</h4>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Apple" id="Apple" name="fruits">
+                    <label class="form-check-label" for="apple">Apple</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Asus" id="Asus" name="fruits">
+                    <label class="form-check-label" for="asus">Asus</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Acer" id="Acer" name="fruits">
+                    <label class="form-check-label" for="acer">Acer</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Casper" id="Casper" name="fruits">
+                    <label class="form-check-label" for="">Casper</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Dell" id="Dell" name="fruits">
+                    <label class="form-check-label" for="">Dell</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="HP" id="HP" name="fruits">
+                    <label class="form-check-label" for="">HP</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Hometech" id="Hometech" name="fruits">
+                    <label class="form-check-label" for="">Hometech</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Lenovo" id="Lenovo" name="fruits">
+                    <label class="form-check-label" for="">Lenovo</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Monster" id="Monster" name="fruits">
+                    <label class="form-check-label" for="">Monster</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="MSI" id="MSI" name="fruits">
+                    <label class="form-check-label" for="">MSI</label>
+                  </div>
+                </div>
+                <div class="col my-3 bg-white">
+                  <h4 class="text-center">Ram</h4>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="4 GB" id="4GB" name="fruits">
+                    <label class="form-check-label" for="apple">4 GB</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="8 GB" id="16GB" name="fruits">
+                    <label class="form-check-label" for="">8 GB</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="16 GB" id="16GB" name="fruits">
+                    <label class="form-check-label" for="">16 GB</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="32 GB" id="32GB" name="fruits">
+                    <label class="form-check-label" for="">32 GB</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="64 GB" id="64GB" name="fruits">
+                    <label class="form-check-label" for="">64 GB</label>
+                  </div>
+                </div>
+                <div class="col my-3 bg-white">
+                  <h4 class="text-center">İşlemci Tipi</h4>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Intel" id="Inteli5" name="fruits">
+                    <label class="form-check-label" for="apple">Intel</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="AMD" id="amd" name="fruits">
+                    <label class="form-check-label" for="">AMD</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Apple M1" id="m1" name="fruits">
+                    <label class="form-check-label" for="">M1</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Apple M2" id="m2" name="fruits">
+                    <label class="form-check-label" for="">M2</label>
+                  </div>
+                </div>
+                <div class="col my-3 bg-white">
+                  <h4 class="text-center">Disk Boyutu</h4>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="256 GB" id="256gb" name="fruits">
+                    <label class="form-check-label" for="apple">256 GB</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="512 GB" id="512gb" name="fruits">
+                    <label class="form-check-label" for="">512 GB</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="1 TB" id="1tb" name="fruits">
+                    <label class="form-check-label" for="">1 TB</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="2 TB" id="2tb" name="fruits">
+                    <label class="form-check-label" for="">2 TB</label>
+                  </div>
+                </div>
+                  <button type="submit">Submit</button>
+                </form>
+              </div> 
+            <div class="col-9 g-5 border border-primary">
+              <div class = row>  
+                  {% for notebook in notebooklar %}
+                      <div class="col-4 g-3">
+                         {% include 'partials/_urunler.html' %}
+                      </div>
+                  {% endfor %}
+                 </div>
+              </div>
+            </div> 
+        </div>
+      </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  </body>
+  <script>
+    veri = []
+    function _apple()
+    {
+      var cb = document.getElementById("apple");
+      var text = document.getElementById("msg1");
+      if(cb.checked==true)
+      {
+        veri.push("apple");
+        text.style.display="block";
+      }
+      else
+      {
+        if(veri.includes("apple"))
+        {
+           veri.pop("apple");
+        }
+        text.style.display="none";          
+      }
+    }
+
+    function _lenovo()
+    {
+      var cb = document.getElementById("lenovo");
+      var text = document.getElementById("msg1");
+      if(cb.checked==true)
+      {
+        veri.push("lenovo");
+        text.style.display="block";
+      }
+      else
+      {
+        if(veri.includes("lenovo"))
+        {
+           veri.pop("lenovo");
+        }
+        text.style.display="none";          
+      }
+    }
+
+    function push()
+    {
+      var total;
+      var cb = document.getElementById("filtrele");
+      var text = document.getElementById("msg3");
+      
+    }
+  </script>
+</html>
