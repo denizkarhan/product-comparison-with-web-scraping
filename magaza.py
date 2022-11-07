@@ -1,7 +1,6 @@
-import find, bs4, lxml, pymongo, requests, urllib.request, shutil, threading, xlwt, random, openpyxl
+import find, bs4, lxml, pymongo, requests, urllib.request, xlwt
 from os import link
 from bs4 import BeautifulSoup
-import pandas as pd
 from xlwt import Workbook
 
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
