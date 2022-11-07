@@ -4,7 +4,8 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from xlwt import Workbook
 
-dosya = open("a.txt", "w")
+#------------------DATA FOR MY SITE-------------------
+product_of_site = open("a.txt", "w")
 
 #------------------CONNECT MONGODB-------------------
 myclient = pymongo.MongoClient("mongodb://localhost:27017/")
@@ -555,22 +556,22 @@ def Global_success_data_to_MongoDB():
               x = mycol.insert_one(id_added)
               End_computer_data.append(id_added)
               print(k * "🔥")
-              dosya.write("Marka: " + str(id_added.get("Marka")) + "\n")
-              dosya.write("ModelAdi: " + str(id_added.get("ModelAdi")) + "\n")
-              dosya.write("Modelno: " + str(id_added.get("Modelno")) + "\n")
-              dosya.write("İşletimSistemi: " + str(id_added.get("İşletimSistemi")) + "\n")
-              dosya.write("İslemciTipi: " + str(id_added.get("İslemciTipi")) + "\n")
-              dosya.write("İslemciNesli: " + str(id_added.get("İslemciNesli")) + "\n")
-              dosya.write("Ram: " + str(id_added.get("Ram")) + "\n")
-              dosya.write("DiskBoyutu: " + str(id_added.get("DiskBoyutu")) + "\n")
-              dosya.write("DiskTürü: " + str(id_added.get("DiskTürü")) + "\n")
-              dosya.write("EkranBoyutu: " + str(id_added.get("EkranBoyutu")) + "\n")
-              dosya.write("Puanı: " + "0.0" + "\n")
-              dosya.write("Fiyat: " + str(int(id_added.get("Fiyat1")) + int(id_added.get("Fiyat1")) / 10) + "\n")
-              dosya.write("Siteİsmi: " + "Magazam" + "\n")
-              dosya.write("SiteLinki: " + "http://127.0.0.1:8000/magazahome" + "\n")
-              dosya.write("Title: " + str(id_added.get("Title1")) + "\n")
-              dosya.write("İmageLink: " + str(id_added.get("İmageLink")) + "\n")
+              product_of_site.write("Marka: " + str(id_added.get("Marka")) + "\n")
+              product_of_site.write("ModelAdi: " + str(id_added.get("ModelAdi")) + "\n")
+              product_of_site.write("Modelno: " + str(id_added.get("Modelno")) + "\n")
+              product_of_site.write("İşletimSistemi: " + str(id_added.get("İşletimSistemi")) + "\n")
+              product_of_site.write("İslemciTipi: " + str(id_added.get("İslemciTipi")) + "\n")
+              product_of_site.write("İslemciNesli: " + str(id_added.get("İslemciNesli")) + "\n")
+              product_of_site.write("Ram: " + str(id_added.get("Ram")) + "\n")
+              product_of_site.write("DiskBoyutu: " + str(id_added.get("DiskBoyutu")) + "\n")
+              product_of_site.write("DiskTürü: " + str(id_added.get("DiskTürü")) + "\n")
+              product_of_site.write("EkranBoyutu: " + str(id_added.get("EkranBoyutu")) + "\n")
+              product_of_site.write("Puanı: " + "0.0" + "\n")
+              product_of_site.write("Fiyat: " + str(int(id_added.get("Fiyat1")) + int(id_added.get("Fiyat1")) / 10) + "\n")
+              product_of_site.write("Siteİsmi: " + "Magazam" + "\n")
+              product_of_site.write("SiteLinki: " + "http://127.0.0.1:8000/magazahome" + "\n")
+              product_of_site.write("Title: " + str(id_added.get("Title1")) + "\n")
+              product_of_site.write("İmageLink: " + str(id_added.get("İmageLink")) + "\n")
     return End_computer_data
 
 #------------------GET IMAGE LINK-------------------
@@ -632,21 +633,21 @@ def Download_images(End_computer_data):
 t1 = threading.Thread(target = _ciceksepeti)
 t2 = threading.Thread(target = _evkur)
 t3 = threading.Thread(target = _trendyol)
-# t4 = threading.Thread(target = _teknosa)
+t4 = threading.Thread(target = _teknosa)
 t5 = threading.Thread(target = _vatan)
 t6 = threading.Thread(target = _n11)
 
 t1.start()
 t2.start()
 t3.start()
-# t4.start()
+t4.start()
 t5.start()
 t6.start()
 
 t1.join()
 t2.join()
 t3.join()
-# t4.join()
+t4.join()
 t5.join()
 t6.join()
 
@@ -673,9 +674,9 @@ print("Veriler MongoDB'ye aktarılıyor 📝")
 End_computer_data = Global_success_data_to_MongoDB()
 print("Veriler başarılı bir şekilde veritabanına aktarıldı ✅✅✅")
 
-dosya.close()
+product_of_site.close()
 
-#------------------IMAGE DOWNLOAD2-------------------
+#------------------IMAGE DOWNLOAND2-------------------
 ''' print("Resimler indiriliyor 🔧🔧🔧")
 Download_images(End_computer_data)
 print("Resimler indirildi ✅✅✅") '''
